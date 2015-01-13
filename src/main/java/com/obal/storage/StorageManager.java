@@ -6,6 +6,7 @@ public class StorageManager {
 	
 	public DocContent getContent(EntryKey key){
 		
+		
 		return null;
 	}
 }
