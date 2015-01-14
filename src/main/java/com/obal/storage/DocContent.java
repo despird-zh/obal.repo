@@ -6,6 +6,7 @@ public abstract class DocContent {
 
 	private StorageInfo storage;	
 	private String path  = null;
+	private boolean ready = false;
 	
 	public DocContent(StorageInfo storage, String path){
 		
@@ -19,8 +20,8 @@ public abstract class DocContent {
 
 	public abstract void cleanup()throws StorageException;
 	
-	public abstract int dataLength();
+	public abstract long contentSize();
 	
-	public abstract int chunkAmount( int chunkSize);
+	public abstract long chunkAmount( long chunkSize);
 	
 }
