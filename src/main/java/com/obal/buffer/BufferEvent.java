@@ -5,11 +5,11 @@ import java.nio.MappedByteBuffer;
 
 import com.lmax.disruptor.EventFactory;
 
-public class ChunkBufferEvent {
+public class BufferEvent {
 	
 	private MappedByteBuffer mapbbuf = null;
 	
-	public ChunkBufferEvent(MappedByteBuffer mapbbuf){
+	public BufferEvent(MappedByteBuffer mapbbuf){
 		
 		this.mapbbuf = mapbbuf;
 	}

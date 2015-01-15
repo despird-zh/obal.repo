@@ -9,14 +9,14 @@ import java.nio.channels.FileChannel;
 
 import com.lmax.disruptor.EventFactory;
 
-public class ChunkBufferFactory implements EventFactory<ChunkBufferEvent>{
+public class BufferFactory implements EventFactory<BufferEvent>{
 
 	private long chunkSize = 1024 * 1024 * 2;
 	private FileChannel diskBufferFile = null;
 	private int chunkCount = 0;
 
 	boolean ready = true;
-	public ChunkBufferFactory(long chunkSize){
+	public BufferFactory(long chunkSize){
 		
 		this.chunkSize = chunkSize;
 		File f = new File("c:/tmp/mapped_chunk_buffer.tmp");
@@ -30,10 +30,10 @@ public class ChunkBufferFactory implements EventFactory<ChunkBufferEvent>{
 		}
 	}
 	
-	public ChunkBufferEvent newInstance() {
+	public BufferEvent newInstance() {
 		MappedByteBuffer mem = getMappedBuffer();
 		
-		return new ChunkBufferEvent(mem);
+		return new BufferEvent(mem);
 	}
 
 	private MappedByteBuffer getMappedBuffer(){
