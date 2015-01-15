@@ -40,6 +40,7 @@ public class ChunkInfo {
 		
 		this.chunkData = chunkData;
 	}
+	
 	public byte[] getChunkData(){
 		
 		return this.chunkData;

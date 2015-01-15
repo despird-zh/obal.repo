@@ -4,6 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.lmax.disruptor.EventFactory;
+import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.obal.disruptor.RingEvent;
 
@@ -28,5 +29,20 @@ public class BufferManager {
 		// Connect the handler
 		disruptor.handleEventsWith(handler);
 		
+	}
+	
+	public void publishOperation(BufferOperation operation){
+		
+		RingBuffer<BufferEvent> ringBuffer = disruptor.getRingBuffer();
+		long sequence = ringBuffer.next();  // Grab the next sequence
+	    try
+	    {
+	    	BufferEvent event = ringBuffer.get(sequence); // Get the entry in the Disruptor
+	        event.setOperation(operation);
+	    }
+	    finally
+	    {
+	        ringBuffer.publish(sequence);// for the sequence
+	    }
 	}
 }
