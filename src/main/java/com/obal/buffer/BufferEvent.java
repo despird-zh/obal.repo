@@ -1,17 +1,31 @@
 package com.obal.buffer;
 
-import java.io.File;
+import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
-
-import com.lmax.disruptor.EventFactory;
 
 public class BufferEvent {
 	
-	private MappedByteBuffer mapbbuf = null;
+	private MappedByteBuffer mapbytebuf = null;
 	
-	public BufferEvent(MappedByteBuffer mapbbuf){
+	private BufferOperation operation = null;
+	
+	public BufferEvent(MappedByteBuffer mapbytebuf){
 		
-		this.mapbbuf = mapbbuf;
+		this.mapbytebuf = mapbytebuf;
 	}
 	
+	public ByteBuffer getByteBuffer(){
+		
+		return this.mapbytebuf;
+	}
+	
+	public BufferOperation getOperation(){
+		
+		return this.operation;
+	}
+	
+	public void setOperation(BufferOperation operation){
+		
+		this.operation = operation;
+	}
 }
