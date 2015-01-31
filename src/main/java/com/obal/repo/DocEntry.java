@@ -1,7 +1,7 @@
 package com.obal.repo;
 
-import com.obal.core.EntryInfo;
 import com.obal.core.EntryKey;
+import com.obal.core.accessor.EntryInfo;
 
 public class DocEntry extends EntryInfo{
 
