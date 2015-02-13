@@ -1,4 +1,4 @@
-package com.obal.buffer;
+package com.doccube.buffer;
 
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;

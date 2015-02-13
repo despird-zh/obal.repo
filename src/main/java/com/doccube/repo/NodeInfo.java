@@ -1,9 +1,9 @@
-package com.obal.repo;
+package com.doccube.repo;
 
 import java.util.List;
 
-import com.obal.core.accessor.AccessControlEntry;
-import com.obal.core.security.EntryAcl;
+import com.doccube.core.accessor.AccessControlEntry;
+import com.doccube.core.security.EntryAcl;
 
 public class NodeInfo extends AccessControlEntry{
 	

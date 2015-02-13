@@ -1,7 +1,7 @@
-package com.obal.repo;
+package com.doccube.repo;
 
-import com.obal.core.EntryKey;
-import com.obal.core.accessor.EntryInfo;
+import com.doccube.core.EntryKey;
+import com.doccube.core.accessor.EntryInfo;
 
 public class DocEntry extends EntryInfo{
 

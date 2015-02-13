@@ -1,6 +1,6 @@
-package com.obal.storage;
+package com.doccube.storage;
 
-import com.obal.exception.StorageException;
+import com.doccube.exception.StorageException;
 
 public abstract class DocContent {
 

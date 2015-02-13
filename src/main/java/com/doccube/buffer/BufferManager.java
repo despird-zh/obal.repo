@@ -1,12 +1,12 @@
-package com.obal.buffer;
+package com.doccube.buffer;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.doccube.disruptor.RingEvent;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
-import com.obal.disruptor.RingEvent;
 
 public class BufferManager {
 	

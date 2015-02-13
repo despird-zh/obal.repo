@@ -1,10 +1,13 @@
-package com.obal.exception;
+package com.doccube.exception;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 import org.slf4j.helpers.MessageFormatter;
+
+import com.doccube.exception.BaseException;
+import com.doccube.exception.EntityException;
 
 public class StorageException  extends BaseException{
 

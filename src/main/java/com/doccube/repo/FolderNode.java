@@ -1,4 +1,4 @@
-package com.obal.repo;
+package com.doccube.repo;
 
 public class FolderNode extends NodeInfo{
 

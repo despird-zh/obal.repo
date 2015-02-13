@@ -1,4 +1,4 @@
-package com.obal.repo;
+package com.doccube.repo;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

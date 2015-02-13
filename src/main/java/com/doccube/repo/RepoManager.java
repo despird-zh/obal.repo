@@ -1,6 +1,6 @@
-package com.obal.repo;
+package com.doccube.repo;
 
-import com.obal.core.security.Principal;
+import com.doccube.core.security.Principal;
 
 public class RepoManager {
 	

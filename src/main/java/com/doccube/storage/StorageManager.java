@@ -1,6 +1,6 @@
-package com.obal.storage;
+package com.doccube.storage;
 
-import com.obal.core.EntryKey;
+import com.doccube.core.EntryKey;
 
 public class StorageManager {
 	

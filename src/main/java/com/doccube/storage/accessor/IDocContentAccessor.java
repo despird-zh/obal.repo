@@ -1,4 +1,4 @@
-package com.obal.storage.accessor;
+package com.doccube.storage.accessor;
 
 public class IDocContentAccessor {
 

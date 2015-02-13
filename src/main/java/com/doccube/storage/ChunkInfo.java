@@ -1,4 +1,4 @@
-package com.obal.storage;
+package com.doccube.storage;
 
 public class ChunkInfo {
 

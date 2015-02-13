@@ -1,4 +1,4 @@
-package com.obal.repo;
+package com.doccube.repo;
 
 import java.util.List;
 
