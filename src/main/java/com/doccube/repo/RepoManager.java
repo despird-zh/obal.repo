@@ -6,8 +6,7 @@ public class RepoManager {
 	
 	public static NodeHierarchy<ViewNode> getViewRepo(){
 		return null;
-		
-		
+				
 	}
 	
 	public static NodeHierarchy<FolderNode> getPublicRepo(){

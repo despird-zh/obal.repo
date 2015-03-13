@@ -6,5 +6,4 @@ public class ViewNode extends NodeInfo{
 		super(nodeName);
 		// TODO Auto-generated constructor stub
 	}
-
 }

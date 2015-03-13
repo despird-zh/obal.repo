@@ -2,8 +2,8 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.obal</groupId>
-  <artifactId>obal-repo</artifactId>
+  <groupId>com.doccube</groupId>
+  <artifactId>doccube-repo</artifactId>
   <version>0.1</version>
   <packaging>jar</packaging>
 
@@ -16,8 +16,8 @@
 
   <dependencies>
   	<dependency>
-  		<groupId>com.obal</groupId>
-			<artifactId>obal-core</artifactId>
+  		<groupId>com.doccube</groupId>
+			<artifactId>doccube-core</artifactId>
 			<version>0.1</version>
 			            <exclusions>
                 <exclusion>

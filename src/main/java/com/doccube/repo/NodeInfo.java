@@ -6,8 +6,7 @@ import com.doccube.core.accessor.AccessControlEntry;
 import com.doccube.core.security.EntryAcl;
 
 public class NodeInfo extends AccessControlEntry{
-	
-	private static final long serialVersionUID = 1L;
+
 	private String nodeName = null;
 		
 	public NodeInfo(String nodeName){
