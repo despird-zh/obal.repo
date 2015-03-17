@@ -1,4 +1,4 @@
-package com.doccube.storage.accessor;
+package com.doccube.repo.accessor;
 
 public class IDocContentAccessor {
 
