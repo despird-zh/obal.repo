@@ -9,6 +9,10 @@ import com.doccube.meta.GenericEntity;
 
 public class RepoSetup {
 	
+	public final static String REPO_PREFIX = "dcube.repo.";
+	public final static String REPO_FILE = REPO_PREFIX + "file";
+	public final static String REPO_CONTENT = REPO_PREFIX + "content";
+	
 	public RepoSetup() {}
 
 	/**
@@ -16,17 +20,37 @@ public class RepoSetup {
 	 **/
 	public void setup() {
 
-		setupFSPathSchema();
-		
-		setupFSContentSchema();
+		setupRepoPrimarySchema();		
+		setupRepoContentSchema();
 	}
 	
-	//
-	private void setupFSPathSchema() {
-
-		EntityAdmin eadmin = EntityAdmin.getInstance();
+	/**
+	 * Set up the repository primary schema 
+	 **/
+	public void setupRepoPrimarySchema(){
 		
-		EntityMeta meta = new EntityMeta("dcube.repo.path");
+		EntityAdmin eadmin = EntityAdmin.getInstance();
+		EntityMeta pmeta = getRepoPrimaryViewSchema();
+		eadmin.setupSchema(pmeta);
+	}
+	
+	/**
+	 * Get the repository primary view schema
+	 * view name:pview.
+	 **/
+	public EntityMeta getRepoPrimaryViewSchema(){
+		
+		return buildRepoViewSchema("pview");
+	}
+	
+	/**
+	 * build view schema 
+	 * 
+	 * @param viewname the name of repository view.
+	 **/
+	public EntityMeta buildRepoViewSchema(String viewname) {
+
+		EntityMeta meta = new EntityMeta(REPO_PREFIX + viewname);
 		meta.setSchemaClass(GenericEntity.class.getName());
 		meta.setDescription("File System path schema");
 		meta.setTraceable(true);
@@ -44,13 +68,28 @@ public class RepoSetup {
 		attr = new EntityAttr("i_child_files", AttrMode.MAP, AttrType.STRING, "c0", "child_files");
 		meta.addAttr(attr);
 		
-		eadmin.setupSchema(meta);
+		return meta;
 	}
 	
-	public EntityMeta getFileEntitySchema(String entityName, String description) {
+	/**
+	 * Build the file entity schema, the schema includes default attributes.
+	 * <ol>
+	 * 	<li>i_name - the name of file</li>
+	 *  <li>i_entity - the entity meta name of file meta info entry</li>
+	 *  <li>i_content - the file content id</li>
+	 *  <li>i_format - the format of file</li>
+	 *  <li>i_tags - the tags of file</li>
+	 * </ol>
+	 * @param entityName the name of entity
+	 * @param description the description of entity
+	 * @param attrs the EntityAttr array
+	 * 
+	 **/
+	public EntityMeta buildFileEntitySchema(String entityName, String description, EntityAttr ...attrs ) {
 
 		EntityMeta meta = new EntityMeta(entityName);
 		meta.setSchemaClass(RepoFileEntity.class.getName());
+		meta.setSchema("dcube.repo.file");
 		meta.setDescription(description);
 		meta.setTraceable(true);
 		meta.setAccessControllable(true);
@@ -61,13 +100,25 @@ public class RepoSetup {
 		attr = new EntityAttr("i_entity", "c0", "entity");
 		meta.addAttr(attr);
 		
-		attr = new EntityAttr("i_file", "c0", "file");
+		attr = new EntityAttr("i_content", "c0", "content");
 		meta.addAttr(attr);
 
+		attr = new EntityAttr("i_format", "c0", "format");
+		meta.addAttr(attr);
+
+		attr = new EntityAttr("i_tags", AttrMode.LIST, AttrType.STRING, "c0", "tags");
+		meta.addAttr(attr);
+		
+		for(EntityAttr a1: attrs)
+			meta.addAttr(a1);
+		
 		return meta;
 	}
 	
-	private void setupFSContentSchema() {
+	/**
+	 * Set up the content schema
+	 **/
+	private void setupRepoContentSchema() {
 
 		EntityAdmin eadmin = EntityAdmin.getInstance();
 		
@@ -87,7 +138,10 @@ public class RepoSetup {
 		
 		attr = new EntityAttr("i_size", "c0", "size");		
 		meta.addAttr(attr);
-				
+
+		attr = new EntityAttr("i_files", "c0", "files");		
+		meta.addAttr(attr);
+		
 		eadmin.setupSchema(meta);
 	}
 }
