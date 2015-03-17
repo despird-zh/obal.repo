@@ -3,8 +3,6 @@ package com.doccube.buffer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.doccube.disruptor.RingEvent;
-import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 
@@ -16,6 +14,7 @@ public class BufferManager {
 	/** the disruptor instance */
 	private Disruptor<BufferEvent> disruptor = null;
 
+	@SuppressWarnings("unchecked")
 	public void initial(){
 		
 		// Executor that will be used to construct new threads for consumers

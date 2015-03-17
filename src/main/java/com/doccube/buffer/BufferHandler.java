@@ -15,8 +15,8 @@ public class BufferHandler implements EventHandler<BufferEvent> {
 		
 		ByteBuffer buffer = event.getByteBuffer();
 		buffer.clear();// prepare
-		operation.writeBuffer(buffer);// write data to buffer
-		operation.readBuffer(buffer); // read data from buffer
+		operation.loadBuffer(buffer);// write data to buffer
+		operation.dumpBuffer(buffer); // read data from buffer
 		// clear operation binding
 		event.setOperation(null);
 	}	
