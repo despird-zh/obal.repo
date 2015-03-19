@@ -17,8 +17,8 @@ import java.nio.file.spi.FileSystemProvider;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.EnumSet;
 
-import com.doccube.fs.CubeAclFileAttributeView;
-import com.doccube.fs.CubeFileAttributeView;
+import com.dcube.fs.CubeAclFileAttributeView;
+import com.dcube.fs.CubeFileAttributeView;
 
 public class CubeFileSystemTest {
 	
