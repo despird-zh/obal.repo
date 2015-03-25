@@ -1,9 +1,6 @@
 package com.dcube.repo;
 
-public class ViewNode extends RepoFileEntry{
+public class ViewNode{
 
-	public ViewNode(String nodeName) {
-		super(nodeName);
-		// TODO Auto-generated constructor stub
-	}
+
 }

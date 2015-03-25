@@ -1,5 +1,5 @@
 package com.dcube.repo;
 
-public class EntryGroup {
+public class FileGroup {
 
 }
