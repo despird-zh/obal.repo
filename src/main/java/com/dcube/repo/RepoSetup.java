@@ -7,6 +7,7 @@ import com.dcube.meta.EntityMeta;
 import com.dcube.meta.GenericEntity;
 import com.dcube.meta.EntityAttr.AttrMode;
 import com.dcube.meta.EntityAttr.AttrType;
+
 public class RepoSetup {
 	
 	public final static String REPO_PREFIX = EntityConstants.ENTITY_PREFIX + "repo.";
@@ -51,7 +52,7 @@ public class RepoSetup {
 	public EntityMeta buildRepoViewSchema(String viewname) {
 
 		EntityMeta meta = new EntityMeta(REPO_PREFIX + viewname);
-		meta.setSchemaClass(GenericEntity.class.getName());
+		meta.setEntityClass(GenericEntity.class.getName());
 		meta.setDescription("File System path schema");
 		meta.setTraceable(true);
 		meta.setAccessControllable(true);
@@ -88,7 +89,7 @@ public class RepoSetup {
 	public EntityMeta buildFileEntitySchema(String entityName, String description, EntityAttr ...attrs ) {
 
 		EntityMeta meta = new EntityMeta(entityName);
-		meta.setSchemaClass(RepoFileEntity.class.getName());
+		meta.setEntityClass(RepoFileEntity.class.getName());
 		meta.setSchema(REPO_FILE);
 		meta.setDescription(description);
 		meta.setTraceable(true);
@@ -123,7 +124,7 @@ public class RepoSetup {
 		EntityAdmin eadmin = EntityAdmin.getInstance();
 		
 		EntityMeta meta = new EntityMeta(REPO_CONTENT);
-		meta.setSchemaClass(GenericEntity.class.getName());
+		meta.setEntityClass(GenericEntity.class.getName());
 		meta.setDescription("File System content schema");
 		meta.setTraceable(true);
 		

@@ -1,6 +1,6 @@
 package com.dcube.repo;
 
-public class ViewNode extends NodeInfo{
+public class ViewNode extends RepoFileEntry{
 
 	public ViewNode(String nodeName) {
 		super(nodeName);

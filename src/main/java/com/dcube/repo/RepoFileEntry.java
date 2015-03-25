@@ -5,17 +5,17 @@ import java.util.List;
 import com.dcube.core.accessor.AccessControlEntry;
 import com.dcube.core.security.EntryAcl;
 
-public class NodeInfo extends AccessControlEntry{
+public class RepoFileEntry extends AccessControlEntry{
 
 	private String nodeName = null;
 		
-	public NodeInfo(String nodeName){
+	public RepoFileEntry(String nodeName){
 		
 		super("",null);
 		this.nodeName = nodeName;
 	}
 	
-	public NodeInfo(String entityName, String key){
+	public RepoFileEntry(String entityName, String key){
 		
 		super(entityName,key);
 	}
@@ -25,12 +25,12 @@ public class NodeInfo extends AccessControlEntry{
 		return this.nodeName;
 	}
 	
-	public List<NodeInfo> childNodes(){
+	public List<RepoFileEntry> childNodes(){
 		return null;
 		
 	}
 	
-	public NodeInfo parentNode(){
+	public RepoFileEntry parentNode(){
 		return null;	
 		
 	}
