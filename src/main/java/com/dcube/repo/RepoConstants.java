@@ -46,6 +46,9 @@ public class RepoConstants {
 		FileIds(   "i_files",    "files"),
 		MD5(  "i_md5",   "md5"),
 		StorePath("i_storepath",  "storepath"),
+		Size("i_size",  "size"),
+		Lock("i_lock","lock"),
+		LockFile("i_lockfile","lockfile"),
 		Format(  "i_format",   "format");
 				
 		public final String attribute;

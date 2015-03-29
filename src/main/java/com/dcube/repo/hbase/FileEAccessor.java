@@ -6,14 +6,14 @@ import com.dcube.core.hbase.HEntityAccessor;
 import com.dcube.core.hbase.HEntryWrapper;
 import com.dcube.repo.RepoConstants;
 
-public class RepoContentAccessor extends HEntityAccessor<EntryInfo>{
+public class FileEAccessor extends HEntityAccessor<EntryInfo>{
 
-	public RepoContentAccessor() {
-		super(RepoConstants.ACCESSOR_ENTITY_CONTENT);
+	public FileEAccessor() {
+		super(RepoConstants.ACCESSOR_ENTITY_FILE);
 	}
 	
-	public RepoContentAccessor(AccessorContext context) {
-		super(RepoConstants.ACCESSOR_ENTITY_CONTENT,context);
+	public FileEAccessor(AccessorContext context) {
+		super(RepoConstants.ACCESSOR_ENTITY_FILE,context);
 	}
 
 	@Override
