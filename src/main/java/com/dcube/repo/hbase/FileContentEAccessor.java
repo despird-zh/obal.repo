@@ -4,6 +4,7 @@ import com.dcube.core.accessor.AccessorContext;
 import com.dcube.core.accessor.EntryInfo;
 import com.dcube.core.hbase.HEntityAccessor;
 import com.dcube.core.hbase.HEntryWrapper;
+import com.dcube.core.hbase.HRawWrapper;
 import com.dcube.repo.RepoConstants;
 
 public class FileContentEAccessor extends HEntityAccessor<EntryInfo>{
@@ -18,8 +19,8 @@ public class FileContentEAccessor extends HEntityAccessor<EntryInfo>{
 
 	@Override
 	public HEntryWrapper<EntryInfo> getEntryWrapper() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return new HRawWrapper();
 	}
 
 }
