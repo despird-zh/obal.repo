@@ -10,49 +10,22 @@ public class FileTag {
 
 	private String name;
 	
-	private String tagCategory;
-	
-	private String tagClass;
-	
-	private String tagSubclass;
-	
-	public FileTag(String name){
-		
-		this.name = name;
-	}
-	
-	public String getName(){
-		
-		return name;				
-	}
+	private String category;
 
-	public String getTagCategory() {
-		return tagCategory;
-	}
-
-	public void setTagCategory(String tagCategory) {
-		this.tagCategory = tagCategory;
-	}
-
-	public String getTagClass() {
-		return tagClass;
-	}
-
-	public void setTagClass(String tagClass) {
-		this.tagClass = tagClass;
-	}
-
-	public String getTagSubclass() {
-		return tagSubclass;
-	}
-
-	public void setTagSubclass(String tagSubclass) {
-		this.tagSubclass = tagSubclass;
+	public String getName() {
+		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
 }
