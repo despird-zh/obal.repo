@@ -7,14 +7,14 @@ import com.dcube.core.hbase.HEntityAccessor;
 import com.dcube.core.hbase.HEntryWrapper;
 import com.dcube.repo.RepoConstants;
 
-public class FolderEAccessor extends HEntityAccessor<AccessControlEntry>{
+public class RepoViewFolderEAccessor extends HEntityAccessor<AccessControlEntry>{
 
-	public FolderEAccessor() {
-		super(RepoConstants.ACCESSOR_ENTITY_FOLDER);
+	public RepoViewFolderEAccessor() {
+		super(RepoConstants.ACCESSOR_ENTITY_REPOVIEW_FOLER);
 	}
 	
-	public FolderEAccessor(AccessorContext context) {
-		super(RepoConstants.ACCESSOR_ENTITY_FOLDER,context);
+	public RepoViewFolderEAccessor(AccessorContext context) {
+		super(RepoConstants.ACCESSOR_ENTITY_REPOVIEW_FOLER,context);
 	}
 
 	@Override
