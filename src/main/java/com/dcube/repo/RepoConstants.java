@@ -4,16 +4,20 @@ import com.dcube.meta.EntityConstants;
 
 public class RepoConstants {
 	
-	public static String ACCESSOR_ENTITY_CONTENT = "entity.content";
-	public static String ACCESSOR_ENTITY_FILE = "entity.file";
-	public static String ACCESSOR_ENTITY_FOLDER = "entity.folder";
-	public static String ACCESSOR_ENTITY_REPOPRIMARY = "entity.repoprimary";
-	public static String ACCESSOR_ENTITY_REPOVIEW = "entity.repoview";
-	public static String ACCESSOR_ENTITY_REPOVIEW_FOLER = "entity.repoview.folder";
+	public static final String ACCESSOR_ENTITY_CONTENT = "entity.content";
+	public static final String ACCESSOR_ENTITY_FILE = "entity.file";
+	public static final String ACCESSOR_ENTITY_FOLDER = "entity.folder";
+	public static final String ACCESSOR_ENTITY_REPOPRIMARY = "entity.repoprimary";
+	public static final String ACCESSOR_ENTITY_REPOVIEW = "entity.repoview";
+	public static final String ACCESSOR_ENTITY_REPOVIEW_FOLER = "entity.repoview.folder";
+	
+	/** name of primary repository */
+	public static final String REPO_PRIMARY = "primary";
 	
 	/** File and folder are stored in same table */
 	public static final String ENTITY_FILE = EntityConstants.ENTITY_PREFIX + "repo.primary";
 	public static final String ENTITY_FOLDER = EntityConstants.ENTITY_PREFIX + "repo.primary";
+	public static final String ENTITY_TAG = EntityConstants.ENTITY_PREFIX + "repo.tag";
 	
 	/** Repository view is stored in one table. */
 	public static final String ENTITY_REPOVIEW = EntityConstants.ENTITY_PREFIX + "repo.view";
