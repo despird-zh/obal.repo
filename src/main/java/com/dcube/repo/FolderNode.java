@@ -4,42 +4,49 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.dcube.core.EntryKey;
+import com.dcube.core.accessor.AccessControlEntry;
 import com.dcube.core.security.AclPrivilege;
 import com.dcube.core.security.EntryAcl;
 
 public class FolderNode implements IRepoNode{
 
-	public FolderNode(String nodeName) {
-		
+	AccessControlEntry entry = null;
+	String repoName = null;
+	EntryKey key = null;
+	public FolderNode(String repoName, AccessControlEntry entry) {
+		this.repoName = repoName;
+		this.entry = entry;
+		this.key = entry.getEntryKey();
 	}
 
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return key.getKey();
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return entry.getAttrValue(RepoConstants.FolderEnum.Name.attribute, String.class);
 	}
 
 	@Override
 	public boolean isDirectory() {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return entry.getAttrValue(RepoConstants.FolderEnum.IsDirectory.attribute, Boolean.class);
 	}
 
 	@Override
 	public EntryAcl getEntryAcl() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return entry.getEntryAcl();
 	}
 
 	@Override
 	public void grant(String... permission) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

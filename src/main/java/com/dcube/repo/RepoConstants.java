@@ -81,10 +81,12 @@ public class RepoConstants {
 	public static enum FolderEnum{
 
 		Name(   "i_name",    "name"),
+		Description(  "i_description",   "description"),
 		IsDirectory(  "i_isdirectory",   "isdirectory"),
 		Owner("i_owner",  "owner"),
 		Entity( "i_entity", "entity"),
 		Parent("i_parent",  "parent"),
+		RepoName(  "i_repo_name",   "reponame"),
 		ChildFiles( "i_child_files", "childfiles"),		
 		ChildFolders( "i_child_folders", "childfolders");
 		
@@ -164,4 +166,5 @@ public class RepoConstants {
 			this.colfamily = colfamily;
 	    }
 	}
+
 }
