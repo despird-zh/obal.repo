@@ -18,7 +18,7 @@ public class RepoConstants {
 	public static final String ENTITY_FILE = EntityConstants.ENTITY_PREFIX + "repo.file";
 	public static final String ENTITY_FOLDER = EntityConstants.ENTITY_PREFIX + "repo.folder";
 	public static final String ENTITY_TAG = EntityConstants.ENTITY_PREFIX + "repo.tag";
-
+	public static final String ENTITY_CONTENT = EntityConstants.ENTITY_PREFIX + "repo.content";
 	/** Repository view is stored in one table. */
 	public static final String ENTITY_REPOVIEW = EntityConstants.ENTITY_PREFIX + "repo.view";
 	
@@ -26,27 +26,32 @@ public class RepoConstants {
 	/** File and folder are stored in same table */
 	public static final String SCHEMA_FILE = EntityConstants.ENTITY_PREFIX + "repo.primary";
 	public static final String SCHEMA_FOLDER = EntityConstants.ENTITY_PREFIX + "repo.primary";
+	
 	public static final String SCHEMA_TAG = EntityConstants.ENTITY_PREFIX + "repo.tag";
 	public static final String SCHEMA_CONTENT = EntityConstants.ENTITY_PREFIX + "repo.content";
 	
 	/** Repository view is stored in one table. */
 	public static final String SCHEMA_REPOVIEW = EntityConstants.ENTITY_PREFIX + "repo.view";
+	public static final String SCHEMA_REPOVIEW_HIER = EntityConstants.ENTITY_PREFIX + "repo.viewhier";
 	
 	/**
 	 * The meta info enumerator 
 	 **/
-	public static enum FileInfo{
+	public static enum FileEnum{
 
-		Name(   "i_name",    "name"),
+		Name(   "i_name", "name"),
 		IsDirectory(  "i_isdirectory",   "isdirectory"),
 		IsGroup(  "i_isgroup",   "isgroup"),
-		GroupFiles(  "i_groupfiles",   "groupfiles"),
+		GroupFiles(  "i_group_files",   "groupfiles"),
+		Keywards(  "i_keywards",   "keywards"),
+		Description(  "i_description",   "description"),
 		Owner("i_owner",  "owner"),
+		Parent("i_parent",  "parent"),
 		Tags( "i_tags", "tags"),
 		Entity( "i_entity", "entity"),
-		RendContents( "i_rendcontents", "rendcontents"),
-		PrimaryContent( "i_primarycontent", "primarycontent"),
-		PrimaryFormat( "i_primaryformat", "primaryformat"),
+		RendContents( "i_rend_contents", "rendcontents"),
+		PrimaryContent( "i_primary_content", "primarycontent"),
+		PrimaryFormat( "i_primary_format", "primaryformat"),
 		Lock("i_lock",  "lock"),
 		Lockby("i_lockby",  "lockby");
 		
@@ -57,27 +62,60 @@ public class RepoConstants {
 		/**
 		 * Hide default constructor 
 		 **/
-		private FileInfo(String attribute, String qualifier){  
+		private FileEnum(String attribute, String qualifier){  
 			this.attribute = attribute;
 			this.qualifier = qualifier;
 			this.colfamily = EntityConstants.ATTR_DFT_COLUMN;
 	    }
 		
-		private FileInfo(String attribute, String colfamily, String qualifier){  
+		private FileEnum(String attribute, String colfamily, String qualifier){  
+			this.attribute = attribute;
+			this.qualifier = qualifier;
+			this.colfamily = colfamily;
+	    }
+	}
+
+	/**
+	 * The meta info enumerator 
+	 **/
+	public static enum FolderEnum{
+
+		Name(   "i_name",    "name"),
+		IsDirectory(  "i_isdirectory",   "isdirectory"),
+		Owner("i_owner",  "owner"),
+		Entity( "i_entity", "entity"),
+		Parent("i_parent",  "parent"),
+		ChildFiles( "i_child_files", "childfiles"),		
+		ChildFolders( "i_child_folders", "childfolders");
+		
+		public final String attribute;
+		public final String qualifier;
+		public final String colfamily;
+		
+		/**
+		 * Hide default constructor 
+		 **/
+		private FolderEnum(String attribute, String qualifier){  
+			this.attribute = attribute;
+			this.qualifier = qualifier;
+			this.colfamily = EntityConstants.ATTR_DFT_COLUMN;
+	    }
+		
+		private FolderEnum(String attribute, String colfamily, String qualifier){  
 			this.attribute = attribute;
 			this.qualifier = qualifier;
 			this.colfamily = colfamily;
 	    }
 	}
 	
-	public static enum ContentInfo{
+	public static enum ContentEnum{
 
 		FileIds(   "i_files",    "files"),
 		MD5(  "i_md5",   "md5"),
 		StorePath("i_storepath",  "storepath"),
 		Size("i_size",  "size"),
-		Lock("i_lock","lock"),
-		LockFile("i_lockfile","lockfile"),
+		Lock("i_lock","lock"), // WRITE/READ
+		LockFile("i_lock_file","lockfile") ,
 		Format(  "i_format",   "format");
 		
 		public final String attribute;
@@ -87,13 +125,40 @@ public class RepoConstants {
 		/**
 		 * Hide default constructor 
 		 **/
-		private ContentInfo(String attribute, String qualifier){  
+		private ContentEnum(String attribute, String qualifier){  
 			this.attribute = attribute;
 			this.qualifier = qualifier;
 			this.colfamily = EntityConstants.ATTR_DFT_COLUMN;
 	    }
 		
-		private ContentInfo(String attribute, String colfamily, String qualifier){  
+		private ContentEnum(String attribute, String colfamily, String qualifier){  
+			this.attribute = attribute;
+			this.qualifier = qualifier;
+			this.colfamily = colfamily;
+	    }
+	}
+	
+	public static enum RepoViewEnum{
+		
+		Name(  "i_name",   "name"),
+		Description(  "i_description",   "description"),
+		Presents(  "i_presents",   "presents"),
+		Profile(  "i_profile",   "profile");
+		
+		public final String attribute;
+		public final String qualifier;
+		public final String colfamily;
+		
+		/**
+		 * Hide default constructor 
+		 **/
+		private RepoViewEnum(String attribute, String qualifier){  
+			this.attribute = attribute;
+			this.qualifier = qualifier;
+			this.colfamily = EntityConstants.ATTR_DFT_COLUMN;
+	    }
+		
+		private RepoViewEnum(String attribute, String colfamily, String qualifier){  
 			this.attribute = attribute;
 			this.qualifier = qualifier;
 			this.colfamily = colfamily;

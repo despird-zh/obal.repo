@@ -36,11 +36,7 @@ import com.dcube.meta.EntityAttr.AttrType;
  * </p>
  **/
 public class RepoSetup {
-	
-	public final static String REPO_PREFIX = EntityConstants.ENTITY_PREFIX + "repo.";
-	public final static String REPO_FILE = REPO_PREFIX + "file";
-	public final static String REPO_CONTENT = REPO_PREFIX + "content";
-	
+		
 	public RepoSetup() {}
 
 	/**
@@ -78,10 +74,12 @@ public class RepoSetup {
 	 **/
 	public EntityMeta buildRepoViewSchema(String viewname) {
 
-		EntityMeta meta = new EntityMeta(REPO_PREFIX + viewname);
-		meta.setEntityClass(GenericEntity.class.getName());
+		EntityMeta meta = new EntityMeta(RepoConstants.ENTITY_REPOVIEW);
+		meta.setEntityClass(RepoViewEntity.class.getName());
 		meta.setDescription("File System path schema");
+		meta.setAccessorName(RepoConstants.ACCESSOR_ENTITY_REPOVIEW);
 		meta.setTraceable(true);
+		meta.setSchema(RepoConstants.SCHEMA_REPOVIEW);
 		meta.setAccessControllable(true);
 		EntityAttr attr = new EntityAttr("i_name", "c0", "name");
 		meta.addAttr(attr);
@@ -117,7 +115,7 @@ public class RepoSetup {
 
 		EntityMeta meta = new EntityMeta(entityName);
 		meta.setEntityClass(RepoFileEntity.class.getName());
-		meta.setSchema(REPO_FILE);
+		meta.setSchema(RepoConstants.SCHEMA_FILE);
 		meta.setDescription(description);
 		meta.setTraceable(true);
 		meta.setAccessControllable(true);
@@ -150,10 +148,11 @@ public class RepoSetup {
 
 		EntityAdmin eadmin = EntityAdmin.getInstance();
 		
-		EntityMeta meta = new EntityMeta(REPO_CONTENT);
-		meta.setEntityClass(GenericEntity.class.getName());
+		EntityMeta meta = new EntityMeta(RepoConstants.ENTITY_CONTENT);
+		meta.setEntityClass(RepoContentEntity.class.getName());
 		meta.setDescription("File System content schema");
 		meta.setTraceable(true);
+		meta.setSchema(RepoConstants.SCHEMA_CONTENT);
 		
 		EntityAttr attr = new EntityAttr("i_fileids",AttrMode.JSET, AttrType.STRING, "c0", "name");
 		meta.addAttr(attr);
