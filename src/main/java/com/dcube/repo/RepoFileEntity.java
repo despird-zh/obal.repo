@@ -7,8 +7,6 @@ import com.dcube.meta.EntityMeta;
 import com.dcube.meta.GenericEntity;
 
 public class RepoFileEntity extends GenericEntity{
-
-	
 	
 	public RepoFileEntity(EntityMeta meta) {
 		super(meta);
@@ -17,7 +15,7 @@ public class RepoFileEntity extends GenericEntity{
 	@Override
 	public String getSchema(Principal principal, EntryKey key) {
 		
-		return RepoConstants.ENTITY_FILE;
+		return RepoConstants.SCHEMA_FILE;
 	}
 
 	@Override

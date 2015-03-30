@@ -6,18 +6,16 @@ import com.dcube.exception.MetaException;
 import com.dcube.meta.EntityMeta;
 import com.dcube.meta.GenericEntity;
 
-public class RepoViewEntity extends GenericEntity{
-
+public class RepoContentEntity extends GenericEntity{
 	
-	
-	public RepoViewEntity(EntityMeta meta) {
+	public RepoContentEntity(EntityMeta meta) {
 		super(meta);
 	}
 
 	@Override
 	public String getSchema(Principal principal, EntryKey key) {
 		
-		return RepoConstants.SCHEMA_CONTENT;
+		return RepoConstants.SCHEMA_FILE;
 	}
 
 	@Override

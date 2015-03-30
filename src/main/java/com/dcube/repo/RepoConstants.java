@@ -15,12 +15,22 @@ public class RepoConstants {
 	public static final String REPO_PRIMARY = "primary";
 	
 	/** File and folder are stored in same table */
-	public static final String ENTITY_FILE = EntityConstants.ENTITY_PREFIX + "repo.primary";
-	public static final String ENTITY_FOLDER = EntityConstants.ENTITY_PREFIX + "repo.primary";
+	public static final String ENTITY_FILE = EntityConstants.ENTITY_PREFIX + "repo.file";
+	public static final String ENTITY_FOLDER = EntityConstants.ENTITY_PREFIX + "repo.folder";
 	public static final String ENTITY_TAG = EntityConstants.ENTITY_PREFIX + "repo.tag";
-	
+
 	/** Repository view is stored in one table. */
 	public static final String ENTITY_REPOVIEW = EntityConstants.ENTITY_PREFIX + "repo.view";
+	
+	
+	/** File and folder are stored in same table */
+	public static final String SCHEMA_FILE = EntityConstants.ENTITY_PREFIX + "repo.primary";
+	public static final String SCHEMA_FOLDER = EntityConstants.ENTITY_PREFIX + "repo.primary";
+	public static final String SCHEMA_TAG = EntityConstants.ENTITY_PREFIX + "repo.tag";
+	public static final String SCHEMA_CONTENT = EntityConstants.ENTITY_PREFIX + "repo.content";
+	
+	/** Repository view is stored in one table. */
+	public static final String SCHEMA_REPOVIEW = EntityConstants.ENTITY_PREFIX + "repo.view";
 	
 	/**
 	 * The meta info enumerator 
@@ -35,7 +45,10 @@ public class RepoConstants {
 		Tags( "i_tags", "tags"),
 		Entity( "i_entity", "entity"),
 		RendContents( "i_rendcontents", "rendcontents"),
-		PrimaryContent( "i_primarycontent", "primarycontent");
+		PrimaryContent( "i_primarycontent", "primarycontent"),
+		PrimaryFormat( "i_primaryformat", "primaryformat"),
+		Lock("i_lock",  "lock"),
+		Lockby("i_lockby",  "lockby");
 		
 		public final String attribute;
 		public final String qualifier;
@@ -66,7 +79,7 @@ public class RepoConstants {
 		Lock("i_lock","lock"),
 		LockFile("i_lockfile","lockfile"),
 		Format(  "i_format",   "format");
-				
+		
 		public final String attribute;
 		public final String qualifier;
 		public final String colfamily;

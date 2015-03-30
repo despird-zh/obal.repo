@@ -17,7 +17,7 @@ public class RepoTagEntity extends GenericEntity{
 	@Override
 	public String getSchema(Principal principal, EntryKey key) {
 		
-		return RepoConstants.ENTITY_TAG;
+		return RepoConstants.SCHEMA_TAG;
 	}
 
 	@Override

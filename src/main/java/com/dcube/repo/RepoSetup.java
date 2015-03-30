@@ -8,6 +8,33 @@ import com.dcube.meta.GenericEntity;
 import com.dcube.meta.EntityAttr.AttrMode;
 import com.dcube.meta.EntityAttr.AttrType;
 
+/**
+ * Following Entities to be created:
+ * <ol>
+ * 	<li>RepoView entity - single table, holds the Repository's view profile setting.</li>
+ *  <li>Repository View Hierarchy entity - single table, hold the folder hierarchy of view </li>
+ *  <li>Repository file entity - multiple entity in same table, hold the information of file</li>
+ *  <li>Repository folder entity - multiple entity in same table(file), hold folder information</li>
+ *  <li>Repository content entity - single table, hold folder information</li>
+ *  <li>File tag entity - single table, hold tag information</li>
+ * </ol>
+ * 
+ * <p>
+ * Every file owns multiple contents, one is primary one, others are renditions.
+ * Every rendition owns category, it will helps to organize the files
+ * the rendition is not managed separately
+ *
+ * i_rendcontents = {"cate1":{"content0","content1","content2"},
+ *                   "cate2":{"content3","content4","content5"}}
+ * </p>
+ * <p> 
+ * The repository has one primary repository and more view repositories. 
+ * All these data are stored in same table, while the primary repo name is constant.
+ * </p>
+ * <p>
+ * File content delegate the binary data of a file entry. every file entry owns one primary content and other renditions
+ * </p>
+ **/
 public class RepoSetup {
 	
 	public final static String REPO_PREFIX = EntityConstants.ENTITY_PREFIX + "repo.";
