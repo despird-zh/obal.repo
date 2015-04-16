@@ -7,13 +7,16 @@ import java.util.Map;
 import com.dcube.core.EntryKey;
 import com.dcube.core.accessor.AccessControlEntry;
 import com.dcube.core.security.AclPrivilege;
+import com.dcube.core.security.EntryAce;
+import com.dcube.core.security.EntryAce.AceType;
 import com.dcube.core.security.EntryAcl;
 
-public class FolderNode implements IRepoNode{
+public class FolderNode implements RepoNode{
 
 	AccessControlEntry entry = null;
 	String repoName = null;
 	EntryKey key = null;
+	
 	public FolderNode(String repoName, AccessControlEntry entry) {
 		this.repoName = repoName;
 		this.entry = entry;
@@ -45,32 +48,31 @@ public class FolderNode implements IRepoNode{
 	}
 
 	@Override
-	public void grant(String... permission) {
+	public void grant(AceType type, String name, String... permission) {
 		
-		
+		EntryAcl acl = entry.getEntryAcl();
+		EntryAce ace = new EntryAce(type, name, permission);
+		acl.addEntryAce(ace, true);
 	}
 
 	@Override
-	public void revoke(String permission) {
-		// TODO Auto-generated method stub
-		
+	public void revoke(AceType type, String name, String permission) {
+		EntryAcl acl = entry.getEntryAcl();
+		EntryAce ace = acl.getEntryAce(type, name);
+		ace.revoke(permission);
 	}
 
 	@Override
-	public void grant(AclPrivilege privilege) {
-		// TODO Auto-generated method stub
+	public void grant(AceType type, String name, AclPrivilege privilege) {
 		
+		EntryAcl acl = entry.getEntryAcl();
+		EntryAce ace = acl.getEntryAce(type, name);
+		ace.setPrivilege(privilege);
 	}
-
-	@Override
-	public void revoke(AclPrivilege privilege) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public String getOwner() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -125,4 +127,6 @@ public class FolderNode implements IRepoNode{
 		
 		return null;
 	}
+
+
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.dcube.exception.RepoException;
 import com.dcube.repo.FileTag;
-import com.dcube.repo.IRepoNode;
+import com.dcube.repo.RepoNode;
 
 /**
  * Focus on repository content maintenance operation
@@ -12,9 +12,9 @@ import com.dcube.repo.IRepoNode;
  * */
 public interface IRepositoryGAccessor {
 
-	public IRepoNode getRepoNodeByPath(String repoName, String path)throws RepoException;
+	public RepoNode getRepoNodeByPath(String repoName, String path)throws RepoException;
 	
-	public IRepoNode getRepoNodeById(String repoName, String fileId)throws RepoException;
+	public RepoNode getRepoNodeById(String repoName, String fileId)throws RepoException;
 	
 	public void moveRepoNode(String source, String target)throws RepoException;
 	

@@ -1,13 +1,11 @@
 package com.dcube.repo.hbase;
 
 import com.dcube.core.accessor.AccessorContext;
-import com.dcube.core.accessor.EntryInfo;
+import com.dcube.core.accessor.EntityEntry;
 import com.dcube.core.hbase.HEntityAccessor;
-import com.dcube.core.hbase.HEntryWrapper;
-import com.dcube.core.hbase.HRawWrapper;
 import com.dcube.repo.RepoConstants;
 
-public class FileContentEAccessor extends HEntityAccessor<EntryInfo>{
+public class FileContentEAccessor extends HEntityAccessor<EntityEntry>{
 
 	public FileContentEAccessor() {
 		super(RepoConstants.ACCESSOR_ENTITY_CONTENT);
@@ -18,9 +16,9 @@ public class FileContentEAccessor extends HEntityAccessor<EntryInfo>{
 	}
 
 	@Override
-	public HEntryWrapper<EntryInfo> getEntryWrapper() {
+	public EntityEntry newEntryObject() {
 		
-		return new HRawWrapper();
+		return new EntityEntry();
 	}
 
 }

@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.dcube.core.security.AclPrivilege;
+import com.dcube.core.security.EntryAce.AceType;
 import com.dcube.core.security.EntryAcl;
 
-public class FileNode implements IRepoNode{
+public class FileNode implements RepoNode{
 
 	@Override
 	public String getId() {
@@ -33,29 +34,7 @@ public class FileNode implements IRepoNode{
 		return null;
 	}
 
-	@Override
-	public void grant(String... permission) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void revoke(String permission) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void grant(AclPrivilege privilege) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void revoke(AclPrivilege privilege) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public String getOwner() {
@@ -138,6 +117,25 @@ public class FileNode implements IRepoNode{
 		
 		return null;
 	}
+
+	@Override
+	public void grant(AceType type, String name, String... permission) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void revoke(AceType type, String name, String permission) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void grant(AceType type, String name, AclPrivilege privilege) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }

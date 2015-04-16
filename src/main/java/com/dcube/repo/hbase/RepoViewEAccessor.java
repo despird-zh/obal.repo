@@ -1,16 +1,15 @@
 package com.dcube.repo.hbase;
 
+import com.dcube.core.accessor.AccessControlEntry;
 import com.dcube.core.accessor.AccessorContext;
-import com.dcube.core.accessor.EntryInfo;
+import com.dcube.core.accessor.EntityEntry;
 import com.dcube.core.hbase.HEntityAccessor;
-import com.dcube.core.hbase.HEntryWrapper;
-import com.dcube.core.hbase.HRawWrapper;
 import com.dcube.repo.RepoConstants;
 
 /**
  * RepoViewEAccessor be used to access the hierarchy data of different repository view
  **/
-public class RepoViewEAccessor extends HEntityAccessor<EntryInfo>{
+public class RepoViewEAccessor extends HEntityAccessor<EntityEntry>{
 
 	public RepoViewEAccessor() {
 		super(RepoConstants.ACCESSOR_ENTITY_REPOVIEW);
@@ -21,9 +20,9 @@ public class RepoViewEAccessor extends HEntityAccessor<EntryInfo>{
 	}
 
 	@Override
-	public HEntryWrapper<EntryInfo> getEntryWrapper() {
-
-		return new HRawWrapper();
+	public EntityEntry newEntryObject() {
+		
+		return new EntityEntry();
 	}
 
 }

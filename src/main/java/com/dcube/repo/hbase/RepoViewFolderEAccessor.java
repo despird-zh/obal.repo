@@ -2,9 +2,8 @@ package com.dcube.repo.hbase;
 
 import com.dcube.core.accessor.AccessControlEntry;
 import com.dcube.core.accessor.AccessorContext;
-import com.dcube.core.hbase.HAccessControlWrapper;
+import com.dcube.core.accessor.EntityEntry;
 import com.dcube.core.hbase.HEntityAccessor;
-import com.dcube.core.hbase.HEntryWrapper;
 import com.dcube.repo.RepoConstants;
 
 public class RepoViewFolderEAccessor extends HEntityAccessor<AccessControlEntry>{
@@ -18,9 +17,9 @@ public class RepoViewFolderEAccessor extends HEntityAccessor<AccessControlEntry>
 	}
 
 	@Override
-	public HEntryWrapper<AccessControlEntry> getEntryWrapper() {
+	public AccessControlEntry newEntryObject() {
 		
-		return new HAccessControlWrapper();
+		return new AccessControlEntry();
 	}
 
 }

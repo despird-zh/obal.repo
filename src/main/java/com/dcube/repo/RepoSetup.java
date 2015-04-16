@@ -89,9 +89,9 @@ public class RepoSetup {
 		meta.addAttr(attr);
 		attr = new EntityAttr("i_parent_folders", "c0", "parent_folders");
 		meta.addAttr(attr);
-		attr = new EntityAttr("i_child_folders", AttrMode.JMAP, AttrType.STRING, "c0", "child_folders");
+		attr = new EntityAttr("i_child_folders", AttrMode.MAP, AttrType.STRING, "c0", "child_folders");
 		meta.addAttr(attr);
-		attr = new EntityAttr("i_child_files", AttrMode.JMAP, AttrType.STRING, "c0", "child_files");
+		attr = new EntityAttr("i_child_files", AttrMode.MAP, AttrType.STRING, "c0", "child_files");
 		meta.addAttr(attr);
 		
 		return meta;
@@ -132,7 +132,7 @@ public class RepoSetup {
 		attr = new EntityAttr("i_format", "c0", "format");
 		meta.addAttr(attr);
 
-		attr = new EntityAttr("i_tags", AttrMode.JLIST, AttrType.STRING, "c0", "tags");
+		attr = new EntityAttr("i_tags", AttrMode.LIST, AttrType.STRING, "c0", "tags");
 		meta.addAttr(attr);
 		
 		for(EntityAttr a1: attrs)
@@ -154,7 +154,7 @@ public class RepoSetup {
 		meta.setTraceable(true);
 		meta.setSchema(RepoConstants.SCHEMA_CONTENT);
 		
-		EntityAttr attr = new EntityAttr("i_fileids",AttrMode.JSET, AttrType.STRING, "c0", "name");
+		EntityAttr attr = new EntityAttr("i_fileids",AttrMode.SET, AttrType.STRING, "c0", "name");
 		meta.addAttr(attr);
 		
 		attr = new EntityAttr("i_md5", "c0", "md5");

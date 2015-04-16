@@ -4,9 +4,10 @@ import java.util.Date;
 import java.util.Map;
 
 import com.dcube.core.security.AclPrivilege;
+import com.dcube.core.security.EntryAce.AceType;
 import com.dcube.core.security.EntryAcl;
 
-public interface IRepoNode {
+public interface RepoNode {
 
 	public String getId();
 	
@@ -16,14 +17,12 @@ public interface IRepoNode {
 	
 	public EntryAcl getEntryAcl();
 	
-	public void grant(String ... permission);
+	public void grant(AceType type, String name, String ... permission);
 	
-	public void revoke(String permission);
+	public void revoke(AceType type, String name, String permission);
 	
-	public void grant(AclPrivilege privilege);
-	
-	public void revoke(AclPrivilege privilege);
-	
+	public void grant(AceType type, String name, AclPrivilege privilege);
+
 	public String getOwner();
 	
 	public void setOwner(String owner);
