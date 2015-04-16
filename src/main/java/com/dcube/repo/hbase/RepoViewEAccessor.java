@@ -1,6 +1,5 @@
 package com.dcube.repo.hbase;
 
-import com.dcube.core.accessor.AccessControlEntry;
 import com.dcube.core.accessor.AccessorContext;
 import com.dcube.core.accessor.EntityEntry;
 import com.dcube.core.hbase.HEntityAccessor;
