@@ -6,9 +6,9 @@ import java.util.Map;
 
 import com.dcube.core.EntryKey;
 import com.dcube.core.accessor.AccessControlEntry;
-import com.dcube.core.security.AclPrivilege;
+import com.dcube.core.security.AclConstants.AcePrivilege;
+import com.dcube.core.security.AclConstants.AceType;
 import com.dcube.core.security.EntryAce;
-import com.dcube.core.security.EntryAce.AceType;
 import com.dcube.core.security.EntryAcl;
 
 public class FolderNode implements RepoNode{
@@ -63,7 +63,7 @@ public class FolderNode implements RepoNode{
 	}
 
 	@Override
-	public void grant(AceType type, String name, AclPrivilege privilege) {
+	public void grant(AceType type, String name, AcePrivilege privilege) {
 		
 		EntryAcl acl = entry.getEntryAcl();
 		EntryAce ace = acl.getEntryAce(type, name);

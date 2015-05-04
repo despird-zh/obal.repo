@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.dcube.core.security.AclPrivilege;
-import com.dcube.core.security.EntryAce.AceType;
+import com.dcube.core.security.AclConstants.AcePrivilege;
+import com.dcube.core.security.AclConstants.AceType;
 import com.dcube.core.security.EntryAcl;
 
 public class FileNode implements RepoNode{
@@ -131,7 +131,7 @@ public class FileNode implements RepoNode{
 	}
 
 	@Override
-	public void grant(AceType type, String name, AclPrivilege privilege) {
+	public void grant(AceType type, String name, AcePrivilege privilege) {
 		// TODO Auto-generated method stub
 		
 	}

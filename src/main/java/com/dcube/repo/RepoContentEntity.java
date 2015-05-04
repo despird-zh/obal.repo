@@ -19,13 +19,13 @@ public class RepoContentEntity extends GenericEntity{
 	}
 
 	@Override
-	public EntryKey newKey(Principal principal, Object... parameter) throws MetaException {
+	public EntryKey newEntryKey(Principal principal, Object... parameter) throws MetaException {
 		
-		return newKey(principal);
+		return newEntryKey(principal);
 	}
 
 	@Override
-	public EntryKey newKey(Principal principal) throws MetaException {
+	public EntryKey newEntryKey(Principal principal) throws MetaException {
 		
 		String key = String.valueOf(System.currentTimeMillis());		
 		return new EntryKey(getEntityMeta().getEntityName(),key);

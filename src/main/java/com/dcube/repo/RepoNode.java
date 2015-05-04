@@ -3,8 +3,8 @@ package com.dcube.repo;
 import java.util.Date;
 import java.util.Map;
 
-import com.dcube.core.security.AclPrivilege;
-import com.dcube.core.security.EntryAce.AceType;
+import com.dcube.core.security.AclConstants.AcePrivilege;
+import com.dcube.core.security.AclConstants.AceType;
 import com.dcube.core.security.EntryAcl;
 
 public interface RepoNode {
@@ -21,7 +21,7 @@ public interface RepoNode {
 	
 	public void revoke(AceType type, String name, String permission);
 	
-	public void grant(AceType type, String name, AclPrivilege privilege);
+	public void grant(AceType type, String name, AcePrivilege privilege);
 
 	public String getOwner();
 	
