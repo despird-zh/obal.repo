@@ -128,13 +128,13 @@ public class RepoSetup {
 		meta.addAttr(attr);
 		
 		attr = new EntityAttr(FileEnum.IsDirectory.attribute, 
-				AttrType.BOOL,
+				AttrType.BOOLEAN,
 				FileEnum.IsDirectory.colfamily, 
 				FileEnum.IsDirectory.qualifier);
 		meta.addAttr(attr);
 		
 		attr = new EntityAttr(FileEnum.IsGroup.attribute, 
-				AttrType.BOOL,
+				AttrType.BOOLEAN,
 				FileEnum.IsGroup.colfamily, 
 				FileEnum.IsGroup.qualifier);
 		meta.addAttr(attr);
@@ -258,7 +258,7 @@ public class RepoSetup {
 		meta.addAttr(attr);
 		
 		attr = new EntityAttr(FolderEnum.IsDirectory.attribute, 
-				AttrType.BOOL,
+				AttrType.BOOLEAN,
 				FolderEnum.IsDirectory.colfamily, 
 				FolderEnum.IsDirectory.qualifier);
 		meta.addAttr(attr);
@@ -360,7 +360,7 @@ public class RepoSetup {
 		meta.addAttr(attr);
 
 		attr = new EntityAttr(ContentEnum.Lock.attribute,
-				AttrType.BOOL, 
+				AttrType.BOOLEAN, 
 				ContentEnum.Lock.colfamily, 
 				ContentEnum.Lock.qualifier);		
 		meta.addAttr(attr);

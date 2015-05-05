@@ -17,8 +17,8 @@ import com.dcube.repo.RepoConstants.FileEnum;
 public class FileNode extends EntryParser implements RepoNode{
 
 	public FileNode(String fileEntity){
-		super();
-		rawEntry = new AccessControlEntry(fileEntity,null);
+
+		super(new AccessControlEntry(fileEntity,null));
 	}
 	/**
 	 * the constructor 
@@ -26,8 +26,7 @@ public class FileNode extends EntryParser implements RepoNode{
 	 * @param key the key  
 	 **/
 	public FileNode(String fileEntity,String name, String key) {
-		super();
-		rawEntry = new AccessControlEntry(fileEntity, key);
+		super(new AccessControlEntry(fileEntity, key));
 		setAttrValue(FileEnum.NodeName.attribute, name);
 	}
 
@@ -37,8 +36,7 @@ public class FileNode extends EntryParser implements RepoNode{
 	 **/
 	public FileNode(String fileEntity,String name){
 		
-		super();
-		rawEntry = new AccessControlEntry(fileEntity, null);
+		super(new AccessControlEntry(fileEntity, null));
 		setAttrValue(FileEnum.NodeName.attribute, name);
 	}
 	
