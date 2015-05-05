@@ -113,7 +113,7 @@ public class FolderNode implements RepoNode{
 	}
 
 	@Override
-	public <K> K getAttribute(String attribute) {
+	public <K> K getAttribute(String attribute, Class<K> type) {
 		// TODO Auto-generated method stub
 		return null;
 	}

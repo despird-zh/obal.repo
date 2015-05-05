@@ -37,5 +37,5 @@ public interface RepoNode {
 	
 	public Map<String, Object> getAttributes(String ...attributes);
 	
-	public <K> K getAttribute(String attribute);
+	public <K> K getAttribute(String attribute,Class<K> clazz);
 }
