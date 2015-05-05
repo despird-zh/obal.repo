@@ -24,7 +24,7 @@ public class FolderNode implements RepoNode{
 	}
 
 	@Override
-	public String getId() {
+	public String getNodeId() {
 		
 		return key.getKey();
 	}

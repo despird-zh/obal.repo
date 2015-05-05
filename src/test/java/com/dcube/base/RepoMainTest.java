@@ -3,10 +3,6 @@ package com.dcube.base;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
-import com.dcube.admin.EntityAdmin;
-import com.dcube.admin.EntitySetup;
-import com.dcube.core.AccessorFactory;
-import com.dcube.exception.BaseException;
 import com.dcube.launcher.CoreFacade;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING) 
@@ -37,7 +33,7 @@ public class RepoMainTest extends BaseTester{
     		return;
     	
     	debug("---==: Test 001 schema create ");
- 
+    	
     }
      
     public void test999End() throws Exception{       

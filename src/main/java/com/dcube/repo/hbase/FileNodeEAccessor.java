@@ -8,13 +8,13 @@ import com.dcube.exception.BaseException;
 import com.dcube.repo.FileNode;
 import com.dcube.repo.RepoConstants;
 
-public class FileEAccessor extends HAccessControlAccessor<AccessControlEntry>{
+public class FileNodeEAccessor extends HAccessControlAccessor<AccessControlEntry>{
 
-	public FileEAccessor() {
+	public FileNodeEAccessor() {
 		super(RepoConstants.ACCESSOR_ENTITY_FILE);
 	}
 	
-	public FileEAccessor(AccessorContext context) {
+	public FileNodeEAccessor(AccessorContext context) {
 		super(RepoConstants.ACCESSOR_ENTITY_FILE,context);
 	}
 

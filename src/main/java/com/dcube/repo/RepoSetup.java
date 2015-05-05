@@ -7,6 +7,7 @@ import com.dcube.meta.EntityMeta;
 import com.dcube.meta.GenericEntity;
 import com.dcube.meta.EntityAttr.AttrMode;
 import com.dcube.meta.EntityAttr.AttrType;
+import com.dcube.repo.RepoConstants.FileEnum;
 
 /**
  * Following Entities to be created:
@@ -99,13 +100,8 @@ public class RepoSetup {
 	
 	/**
 	 * Build the file entity schema, the schema includes default attributes.
-	 * <ol>
-	 * 	<li>i_name - the name of file</li>
-	 *  <li>i_entity - the entity meta name of file meta info entry</li>
-	 *  <li>i_content - the file content id</li>
-	 *  <li>i_format - the format of file</li>
-	 *  <li>i_tags - the tags of file</li>
-	 * </ol>
+	 * 
+	 * 
 	 * @param entityName the name of entity
 	 * @param description the description of entity
 	 * @param attrs the EntityAttr array
@@ -116,25 +112,88 @@ public class RepoSetup {
 		EntityMeta meta = new EntityMeta(entityName);
 		meta.setEntityClass(RepoFileEntity.class.getName());
 		meta.setSchema(RepoConstants.SCHEMA_FILE);
+		meta.setAccessorName(RepoConstants.ACCESSOR_ENTITY_FILE);
 		meta.setDescription(description);
 		meta.setTraceable(true);
 		meta.setAccessControllable(true);
 		
-		EntityAttr attr = new EntityAttr("i_name", "c0", "name");
+		EntityAttr attr = new EntityAttr(FileEnum.Name.attribute, 
+				FileEnum.Name.colfamily, 
+				FileEnum.Name.qualifier);
 		meta.addAttr(attr);
 		
-		attr = new EntityAttr("i_entity", "c0", "entity");
+		attr = new EntityAttr(FileEnum.IsDirectory.attribute, 
+				AttrType.BOOL,
+				FileEnum.IsDirectory.colfamily, 
+				FileEnum.IsDirectory.qualifier);
 		meta.addAttr(attr);
 		
-		attr = new EntityAttr("i_content", "c0", "content");
+		attr = new EntityAttr(FileEnum.IsGroup.attribute, 
+				AttrType.BOOL,
+				FileEnum.IsGroup.colfamily, 
+				FileEnum.IsGroup.qualifier);
+		meta.addAttr(attr);
+		
+		attr = new EntityAttr(FileEnum.Keywards.attribute, 
+				AttrMode.SET,
+				AttrType.STRING,
+				FileEnum.Keywards.colfamily, 
+				FileEnum.Keywards.qualifier);
+		meta.addAttr(attr);
+		
+		attr = new EntityAttr(FileEnum.Description.attribute, 
+				FileEnum.Description.colfamily, 
+				FileEnum.Description.qualifier);
+		meta.addAttr(attr);
+		
+		attr = new EntityAttr(FileEnum.Owner.attribute, 
+				FileEnum.Owner.colfamily, 
+				FileEnum.Owner.qualifier);
+		meta.addAttr(attr);
+		
+		attr = new EntityAttr(FileEnum.Parent.attribute, 
+				FileEnum.Parent.colfamily, 
+				FileEnum.Parent.qualifier);
+		meta.addAttr(attr);
+		
+		attr = new EntityAttr(FileEnum.Tags.attribute, 
+				AttrMode.MAP,
+				AttrType.STRING,
+				FileEnum.Tags.colfamily, 
+				FileEnum.Tags.qualifier);
+		meta.addAttr(attr);
+		
+		attr = new EntityAttr(FileEnum.Entity.attribute, 
+				FileEnum.Entity.colfamily, 
+				FileEnum.Entity.qualifier);
+		meta.addAttr(attr);
+		
+		attr = new EntityAttr(FileEnum.RendContents.attribute, 
+				FileEnum.RendContents.colfamily, 
+				FileEnum.RendContents.qualifier);
 		meta.addAttr(attr);
 
-		attr = new EntityAttr("i_format", "c0", "format");
+		attr = new EntityAttr(FileEnum.PrimaryContent.attribute, 
+				FileEnum.PrimaryContent.colfamily, 
+				FileEnum.PrimaryContent.qualifier);
 		meta.addAttr(attr);
 
-		attr = new EntityAttr("i_tags", AttrMode.LIST, AttrType.STRING, "c0", "tags");
+		attr = new EntityAttr(FileEnum.PrimaryFormat.attribute, 
+				FileEnum.PrimaryFormat.colfamily, 
+				FileEnum.PrimaryFormat.qualifier);
 		meta.addAttr(attr);
 		
+		attr = new EntityAttr(FileEnum.Lock.attribute, 
+				FileEnum.Lock.colfamily, 
+				FileEnum.Lock.qualifier);
+		meta.addAttr(attr);
+		
+		attr = new EntityAttr(FileEnum.Lockby.attribute, 
+				FileEnum.Lockby.colfamily, 
+				FileEnum.Lockby.qualifier);
+		meta.addAttr(attr);
+		
+		// append other user defined attribute
 		for(EntityAttr a1: attrs)
 			meta.addAttr(a1);
 		

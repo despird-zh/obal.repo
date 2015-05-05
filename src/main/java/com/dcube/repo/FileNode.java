@@ -43,9 +43,9 @@ public class FileNode extends EntryParser implements RepoNode{
 	}
 	
 	@Override
-	public String getId() {
+	public String getNodeId() {
 		// TODO Auto-generated method stub
-		return null;
+		return getEntryKey().getKey();
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.dcube.repo;
 
+import com.dcube.core.security.AclConstants;
 import com.dcube.meta.EntityConstants;
 
 public class RepoConstants {
@@ -43,17 +44,17 @@ public class RepoConstants {
 		IsDirectory(  "i_isdirectory",   "isdirectory"),
 		IsGroup(  "i_isgroup",   "isgroup"),
 		GroupFiles(  "i_group_files",   "groupfiles"),
-		Keywards(  "i_keywards",   "keywards"),
+		Keywards(  "i_keywards",   "keywards"), // Set data
 		Description(  "i_description",   "description"),
-		Owner("i_owner",  "owner"),
-		Parent("i_parent",  "parent"),
-		Tags( "i_tags", "tags"),
-		Entity( "i_entity", "entity"),
-		RendContents( "i_rend_contents", "rendcontents"),
-		PrimaryContent( "i_primary_content", "primarycontent"),
-		PrimaryFormat( "i_primary_format", "primaryformat"),
-		Lock("i_lock",  "lock"),
-		Lockby("i_lockby",  "lockby");
+		Owner("i_owner", AclConstants.CF_ACL , "owner"),
+		Parent("i_parent",  "parent"), // parent folder
+		Tags( "i_tags", "tags"), // map
+		Entity( "i_entity", "entity"),// used to get the attribute list 
+		RendContents( "i_rend_contents", "rendcontents"),// map(rendition name,content id)
+		PrimaryContent( "i_primary_content", "primarycontent"), // primary content id
+		PrimaryFormat( "i_primary_format", "primaryformat"), // primary content format
+		Lock("i_lock",  "lock"), // lock or not
+		Lockby("i_lockby",  "lockby"); // lockby
 		
 		public final String attribute;
 		public final String qualifier;
@@ -83,7 +84,7 @@ public class RepoConstants {
 		Name(   "i_name",    "name"),
 		Description(  "i_description",   "description"),
 		IsDirectory(  "i_isdirectory",   "isdirectory"),
-		Owner("i_owner",  "owner"),
+		Owner("i_owner", AclConstants.CF_ACL, "owner"),
 		Entity( "i_entity", "entity"),
 		Parent("i_parent",  "parent"),
 		RepoName(  "i_repo_name",   "reponame"),

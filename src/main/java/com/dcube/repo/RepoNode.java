@@ -9,7 +9,7 @@ import com.dcube.core.security.EntryAcl;
 
 public interface RepoNode {
 
-	public String getId();
+	public String getNodeId();
 	
 	public String getName();
 	
