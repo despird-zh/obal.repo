@@ -1,5 +1,6 @@
 package com.dcube.repo.hbase;
 
+import com.dcube.core.EntryKey;
 import com.dcube.core.IEntryConverter;
 import com.dcube.core.accessor.AccessControlEntry;
 import com.dcube.core.accessor.AccessorContext;
@@ -35,8 +36,8 @@ public class FileNodeEAccessor extends HAccessControlAccessor<AccessControlEntry
 				@Override
 				public FileNode toTarget(AccessControlEntry fromObject)
 						throws BaseException {
-					
-					FileNode fnode = new FileNode();
+					EntryKey entryKey = fromObject.getEntryKey();
+					FileNode fnode = new FileNode(entryKey.getEntityName());
 					fnode.setGenericEntry(fromObject);
 					return fnode;
 				}

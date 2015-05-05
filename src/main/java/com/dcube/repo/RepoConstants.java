@@ -16,8 +16,8 @@ public class RepoConstants {
 	public static final String REPO_PRIMARY = "primary";
 	
 	/** File and folder are stored in same table */
-	public static final String ENTITY_FILE = EntityConstants.ENTITY_PREFIX + "repo.file";
-	public static final String ENTITY_FOLDER = EntityConstants.ENTITY_PREFIX + "repo.folder";
+	public static final String ENTITY_BASE_FILE = EntityConstants.ENTITY_PREFIX + "repo.base.file";
+	public static final String ENTITY_BASE_FOLDER = EntityConstants.ENTITY_PREFIX + "repo.base.folder";
 	public static final String ENTITY_TAG = EntityConstants.ENTITY_PREFIX + "repo.tag";
 	public static final String ENTITY_CONTENT = EntityConstants.ENTITY_PREFIX + "repo.content";
 	/** Repository view is stored in one table. */
@@ -40,7 +40,7 @@ public class RepoConstants {
 	 **/
 	public static enum FileEnum{
 
-		Name(   "i_name", "name"),
+		NodeName(   "i_name", "name"),
 		IsDirectory(  "i_isdirectory",   "isdirectory"),
 		IsGroup(  "i_isgroup",   "isgroup"),
 		GroupFiles(  "i_group_files",   "groupfiles"),
@@ -81,13 +81,12 @@ public class RepoConstants {
 	 **/
 	public static enum FolderEnum{
 
-		Name(   "i_name",    "name"),
+		NodeName(   "i_name",    "name"),
 		Description(  "i_description",   "description"),
 		IsDirectory(  "i_isdirectory",   "isdirectory"),
 		Owner("i_owner", AclConstants.CF_ACL, "owner"),
 		Entity( "i_entity", "entity"),
 		Parent("i_parent",  "parent"),
-		RepoName(  "i_repo_name",   "reponame"),
 		ChildFiles( "i_child_files", "childfiles"),		
 		ChildFolders( "i_child_folders", "childfolders");
 		
@@ -145,7 +144,7 @@ public class RepoConstants {
 		
 		Name(  "i_name",   "name"),
 		Description(  "i_description",   "description"),
-		Presents(  "i_presents",   "presents"),
+		Presents(  "i_presents",   "presents"),//??????????
 		Profile(  "i_profile",   "profile");
 		
 		public final String attribute;

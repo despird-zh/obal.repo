@@ -1,13 +1,16 @@
 package com.dcube.repo;
 
 import com.dcube.admin.EntityAdmin;
+import com.dcube.core.security.AclConstants;
 import com.dcube.meta.EntityAttr;
 import com.dcube.meta.EntityConstants;
 import com.dcube.meta.EntityMeta;
 import com.dcube.meta.GenericEntity;
 import com.dcube.meta.EntityAttr.AttrMode;
 import com.dcube.meta.EntityAttr.AttrType;
+import com.dcube.repo.RepoConstants.ContentEnum;
 import com.dcube.repo.RepoConstants.FileEnum;
+import com.dcube.repo.RepoConstants.FolderEnum;
 
 /**
  * Following Entities to be created:
@@ -45,8 +48,11 @@ public class RepoSetup {
 	 **/
 	public void setup() {
 
-		setupRepoPrimarySchema();		
-		setupFileContentSchema();
+		EntityAdmin eadmin = EntityAdmin.getInstance();
+		EntityMeta pmeta = buildFileNodeSchema(RepoConstants.ENTITY_BASE_FILE,null);
+		eadmin.setupSchema(pmeta);
+		//setupRepoPrimarySchema();		
+		//setupFileContentSchema();
 	}
 	
 	/**
@@ -65,7 +71,7 @@ public class RepoSetup {
 	 **/
 	public EntityMeta getRepoPrimaryViewSchema(){
 		
-		return buildRepoViewSchema("pview");
+		return buildRepoViewSchema(RepoConstants.REPO_PRIMARY);
 	}
 	
 	/**
@@ -101,13 +107,12 @@ public class RepoSetup {
 	/**
 	 * Build the file entity schema, the schema includes default attributes.
 	 * 
-	 * 
 	 * @param entityName the name of entity
 	 * @param description the description of entity
 	 * @param attrs the EntityAttr array
 	 * 
 	 **/
-	public EntityMeta buildFileEntitySchema(String entityName, String description, EntityAttr ...attrs ) {
+	public EntityMeta buildFileNodeSchema(String entityName, String description, EntityAttr ...attrs ) {
 
 		EntityMeta meta = new EntityMeta(entityName);
 		meta.setEntityClass(RepoFileEntity.class.getName());
@@ -117,9 +122,9 @@ public class RepoSetup {
 		meta.setTraceable(true);
 		meta.setAccessControllable(true);
 		
-		EntityAttr attr = new EntityAttr(FileEnum.Name.attribute, 
-				FileEnum.Name.colfamily, 
-				FileEnum.Name.qualifier);
+		EntityAttr attr = new EntityAttr(FileEnum.NodeName.attribute, 
+				FileEnum.NodeName.colfamily, 
+				FileEnum.NodeName.qualifier);
 		meta.addAttr(attr);
 		
 		attr = new EntityAttr(FileEnum.IsDirectory.attribute, 
@@ -156,6 +161,15 @@ public class RepoSetup {
 				FileEnum.Parent.qualifier);
 		meta.addAttr(attr);
 		
+		/**
+		 * tag attribute format:
+		 * {
+		 *  "xtag0" : "xtagcate1",
+		 *  "xtag1" : "xtagcate1",
+		 *  "xtag2" : "xtagcate2",
+		 *  "xtag3" : "xtagcate3"
+		 * }
+		 **/
 		attr = new EntityAttr(FileEnum.Tags.attribute, 
 				AttrMode.MAP,
 				AttrType.STRING,
@@ -163,16 +177,34 @@ public class RepoSetup {
 				FileEnum.Tags.qualifier);
 		meta.addAttr(attr);
 		
+		/**
+		 * Because multiple file entry in same table schema, when fetch record by key only ,
+		 * need to automatic identify out the entity, so every entry owns attribute to hold the entity 
+		 **/
 		attr = new EntityAttr(FileEnum.Entity.attribute, 
 				FileEnum.Entity.colfamily, 
 				FileEnum.Entity.qualifier);
 		meta.addAttr(attr);
 		
+		/**
+		 * rendition attribute format:
+		 * {
+		 *  "rend0" : "rendkey1",
+		 *  "rend0" : "rendkey2",
+		 *  "rend0" : "rendkey3",
+		 *  "rend0" : "rendkey4"
+		 * }
+		 **/
 		attr = new EntityAttr(FileEnum.RendContents.attribute, 
+				AttrMode.MAP,
+				AttrType.STRING,
 				FileEnum.RendContents.colfamily, 
 				FileEnum.RendContents.qualifier);
 		meta.addAttr(attr);
 
+		/**
+		 * primary content is the key of content
+		 **/
 		attr = new EntityAttr(FileEnum.PrimaryContent.attribute, 
 				FileEnum.PrimaryContent.colfamily, 
 				FileEnum.PrimaryContent.qualifier);
@@ -194,9 +226,99 @@ public class RepoSetup {
 		meta.addAttr(attr);
 		
 		// append other user defined attribute
-		for(EntityAttr a1: attrs)
-			meta.addAttr(a1);
+		if(attrs != null){
+			for(EntityAttr a1: attrs){
+				meta.addAttr(a1);
+			}
+		}
+		return meta;
+	}
+	
+	/**
+	 * Build the folder entity schema, the schema includes default attributes.
+	 * 
+	 * @param entityName the name of entity
+	 * @param description the description of entity
+	 * @param attrs the EntityAttr array
+	 * 
+	 **/
+	public EntityMeta buildFolderNodeSchema(String entityName, String description, EntityAttr ...attrs ) {
+
+		EntityMeta meta = new EntityMeta(entityName);
+		meta.setEntityClass(RepoFileEntity.class.getName());
+		meta.setSchema(RepoConstants.SCHEMA_FOLDER);
+		meta.setAccessorName(RepoConstants.ACCESSOR_ENTITY_FOLDER);
+		meta.setDescription(description);
+		meta.setTraceable(true);
+		meta.setAccessControllable(true);
 		
+		EntityAttr attr = new EntityAttr(FolderEnum.NodeName.attribute, 
+				FolderEnum.NodeName.colfamily, 
+				FolderEnum.NodeName.qualifier);
+		meta.addAttr(attr);
+		
+		attr = new EntityAttr(FolderEnum.IsDirectory.attribute, 
+				AttrType.BOOL,
+				FolderEnum.IsDirectory.colfamily, 
+				FolderEnum.IsDirectory.qualifier);
+		meta.addAttr(attr);
+						
+		attr = new EntityAttr(FolderEnum.Description.attribute, 
+				FolderEnum.Description.colfamily, 
+				FolderEnum.Description.qualifier);
+		meta.addAttr(attr);
+		
+		attr = new EntityAttr(FolderEnum.Owner.attribute, 
+				FolderEnum.Owner.colfamily, 
+				FolderEnum.Owner.qualifier);
+		meta.addAttr(attr);
+		
+		attr = new EntityAttr(FolderEnum.Parent.attribute, 
+				FolderEnum.Parent.colfamily, 
+				FolderEnum.Parent.qualifier);
+		meta.addAttr(attr);
+		
+		/**
+		 * Because multiple file entry in same table schema, when fetch record by key only ,
+		 * need to automatic identify out the entity, so every entry owns attribute to hold the entity 
+		 **/
+		attr = new EntityAttr(FolderEnum.Entity.attribute, 
+				FolderEnum.Entity.colfamily, 
+				FolderEnum.Entity.qualifier);
+		meta.addAttr(attr);
+
+		/**
+		 * {
+		 *  "filename1" : "filekey1",
+		 *  "filename2" : "filekey1",
+		 * }
+		 **/
+		attr = new EntityAttr(FolderEnum.ChildFiles.attribute, 
+				AttrMode.MAP,
+				AttrType.STRING,
+				FolderEnum.ChildFiles.colfamily, 
+				FolderEnum.ChildFiles.qualifier);
+		meta.addAttr(attr);
+		
+		/**
+		 * {
+		 *  "foldername1" : "folderkey1",
+		 *  "foldername2" : "folderkey1",
+		 * }
+		 **/
+		attr = new EntityAttr(FolderEnum.ChildFolders.attribute, 
+				AttrMode.MAP,
+				AttrType.STRING,
+				FolderEnum.ChildFolders.colfamily, 
+				FolderEnum.ChildFolders.qualifier);
+		meta.addAttr(attr);
+		
+		// append other user defined attribute
+		if(attrs != null){
+			for(EntityAttr a1: attrs){
+				meta.addAttr(a1);
+			}
+		}
 		return meta;
 	}
 	
@@ -209,22 +331,50 @@ public class RepoSetup {
 		
 		EntityMeta meta = new EntityMeta(RepoConstants.ENTITY_CONTENT);
 		meta.setEntityClass(RepoContentEntity.class.getName());
+		meta.setAccessorName(RepoConstants.ACCESSOR_ENTITY_CONTENT);
 		meta.setDescription("File System content schema");
 		meta.setTraceable(true);
 		meta.setSchema(RepoConstants.SCHEMA_CONTENT);
 		
-		EntityAttr attr = new EntityAttr("i_fileids",AttrMode.SET, AttrType.STRING, "c0", "name");
+		EntityAttr attr = new EntityAttr(ContentEnum.FileIds.attribute,
+				AttrMode.SET, 
+				AttrType.STRING, 
+				ContentEnum.FileIds.colfamily, 
+				ContentEnum.FileIds.qualifier);
 		meta.addAttr(attr);
 		
-		attr = new EntityAttr("i_md5", "c0", "md5");
+		attr = new EntityAttr(ContentEnum.MD5.attribute,
+				ContentEnum.MD5.colfamily, 
+				ContentEnum.MD5.qualifier);
 		meta.addAttr(attr);
 		
-		attr = new EntityAttr("i_storepath", "c0", "storepath");		
+		attr = new EntityAttr(ContentEnum.StorePath.attribute,
+				ContentEnum.StorePath.colfamily, 
+				ContentEnum.StorePath.qualifier);		
 		meta.addAttr(attr);
 		
-		attr = new EntityAttr("i_size", "c0", "size");		
+		attr = new EntityAttr(ContentEnum.Size.attribute,
+				AttrType.INTEGER, 
+				ContentEnum.Size.colfamily, 
+				ContentEnum.Size.qualifier);		
 		meta.addAttr(attr);
 
+		attr = new EntityAttr(ContentEnum.Lock.attribute,
+				AttrType.BOOL, 
+				ContentEnum.Lock.colfamily, 
+				ContentEnum.Lock.qualifier);		
+		meta.addAttr(attr);
+		
+		attr = new EntityAttr(ContentEnum.LockFile.attribute,
+				ContentEnum.LockFile.colfamily, 
+				ContentEnum.LockFile.qualifier);		
+		meta.addAttr(attr);
+		
+		attr = new EntityAttr(ContentEnum.Format.attribute,
+				ContentEnum.Format.colfamily, 
+				ContentEnum.Format.qualifier);		
+		meta.addAttr(attr);
+		
 		eadmin.setupSchema(meta);
 	}
 }

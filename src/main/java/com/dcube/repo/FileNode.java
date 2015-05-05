@@ -3,6 +3,7 @@ package com.dcube.repo;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.dcube.core.accessor.AccessControlEntry;
 import com.dcube.core.accessor.EntityEntry;
@@ -11,35 +12,34 @@ import com.dcube.core.security.AclConstants.AcePrivilege;
 import com.dcube.core.security.AclConstants.AceType;
 import com.dcube.core.security.EntryAce;
 import com.dcube.core.security.EntryAcl;
-import com.dcube.meta.EntityConstants.GroupEnum;
 import com.dcube.repo.RepoConstants.FileEnum;
 
 public class FileNode extends EntryParser implements RepoNode{
 
-	public FileNode(){
+	public FileNode(String fileEntity){
 		super();
-		rawEntry = new AccessControlEntry(RepoConstants.ENTITY_FILE,null);
+		rawEntry = new AccessControlEntry(fileEntity,null);
 	}
 	/**
 	 * the constructor 
 	 * @param group the group name
 	 * @param key the key  
 	 **/
-	public FileNode(String name, String key) {
+	public FileNode(String fileEntity,String name, String key) {
 		super();
-		rawEntry = new AccessControlEntry(RepoConstants.ENTITY_FILE,key);
-		setAttrValue(GroupEnum.Name.attribute, name);
+		rawEntry = new AccessControlEntry(fileEntity, key);
+		setAttrValue(FileEnum.NodeName.attribute, name);
 	}
 
 	/**
 	 * the constructor 
 	 * @param group the group name
 	 **/
-	public FileNode(String name){
+	public FileNode(String fileEntity,String name){
 		
 		super();
-		rawEntry = new AccessControlEntry(RepoConstants.ENTITY_FILE,null);
-		setAttrValue(GroupEnum.Name.attribute, name);
+		rawEntry = new AccessControlEntry(fileEntity, null);
+		setAttrValue(FileEnum.NodeName.attribute, name);
 	}
 	
 	@Override
@@ -51,7 +51,7 @@ public class FileNode extends EntryParser implements RepoNode{
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return getAttrValue(FileEnum.Name.attribute, String.class);
+		return getAttrValue(FileEnum.NodeName.attribute, String.class);
 	}
 
 	@Override
@@ -127,9 +127,10 @@ public class FileNode extends EntryParser implements RepoNode{
 		throw new UnsupportedOperationException("");
 	}
 	
-	public List<String> getFileTags(){
+	public Set<String> getFileTags(){
 		
-		return getAttrValue(FileEnum.Tags.attribute, List.class);
+		Map<String,String> tagmap = getAttrValue(FileEnum.Tags.attribute, Map.class);
+		return tagmap.keySet();
 	}
 	
 	public FileContent getPrimaryContent(){

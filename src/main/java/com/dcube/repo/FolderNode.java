@@ -32,7 +32,7 @@ public class FolderNode implements RepoNode{
 	@Override
 	public String getName() {
 
-		return entry.getAttrValue(RepoConstants.FolderEnum.Name.attribute, String.class);
+		return entry.getAttrValue(RepoConstants.FolderEnum.NodeName.attribute, String.class);
 	}
 
 	@Override

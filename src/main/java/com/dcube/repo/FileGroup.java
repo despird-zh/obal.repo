@@ -11,6 +11,11 @@ import java.util.Set;
  **/
 public class FileGroup extends FileNode{
 	
+	public FileGroup(String fileEntity) {
+		super(fileEntity);
+		// TODO Auto-generated constructor stub
+	}
+
 	Set<FileNode> files = new HashSet<FileNode>();
 	
 	@Override
