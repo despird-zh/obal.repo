@@ -35,6 +35,9 @@ public class RepoConstants {
 	public static final String SCHEMA_REPOVIEW = EntityConstants.ENTITY_PREFIX + "repo.view";
 	public static final String SCHEMA_REPOVIEW_HIER = EntityConstants.ENTITY_PREFIX + "repo.viewhier";
 	
+	/** Unclassified tag category */
+	public static final String TAG_UNCLASSIFIED = "default";
+	
 	/**
 	 * The meta info enumerator 
 	 **/
@@ -110,6 +113,7 @@ public class RepoConstants {
 	
 	public static enum ContentEnum{
 
+		Name(   "i_name",    "name"),
 		FileIds(   "i_files",    "files"),
 		MD5(  "i_md5",   "md5"),
 		StorePath("i_storepath",  "storepath"),

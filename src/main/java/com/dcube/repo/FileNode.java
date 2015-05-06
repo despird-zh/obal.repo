@@ -1,6 +1,7 @@
 package com.dcube.repo;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -115,43 +116,80 @@ public class FileNode extends EntryParser implements RepoNode{
 		return temp.getAttrValue(attribute, type);
 	}
 	
-	public Set<String> getFileTags(){
+	/**
+	 * Get the file tags attached on this file entry 
+	 **/
+	public Set<FileTag> getFileTags(){
 		
+		Set<FileTag> tags = new HashSet<FileTag>();
+		@SuppressWarnings("unchecked")
 		Map<String,String> tagmap = getAttrValue(FileEnum.Tags.attribute, Map.class);
-		return tagmap.keySet();
+		for(Map.Entry<String,String> item: tagmap.entrySet()){
+			tags.add(new FileTag(item.getKey(),item.getValue()));
+		}
+		return tags;
 	}
 	
+	/**
+	 * Get the key of primary content 
+	 **/
 	public String getPrimaryContent(){
 		
 		return getAttrValue(FileEnum.PrimaryContent.attribute, String.class);
 	}
 	
+	/**
+	 * Get the rendition of file
+	 * @return  Map<String, String> the map key is the name of rendition, the value is the key the rendition content
+	 **/
+	@SuppressWarnings("unchecked")
 	public Map<String, String> getRendContents(){
 		
 		return getAttrValue(FileEnum.RendContents.attribute, Map.class);
 	}
 
+	/**
+	 * Get the keywords of file 
+	 **/
+	@SuppressWarnings("unchecked")
 	public Set<String> getKeywords(){
 		
 		return getAttrValue(FileEnum.Keywards.attribute, Set.class);
 	}
 	
+	/**
+	 * Get the parent node key, i.e. the key of parent folder 
+	 **/
 	public String getParentNode(){
 		return getAttrValue(FileEnum.Parent.attribute, String.class);
 	}
 	
+	/**
+	 * Get the entity name of file node, this entity includes some extra attributes
+	 * i.e. the user defined attributes. 
+	 **/
 	public String getEntity(){
 		return getAttrValue(FileEnum.Entity.attribute, String.class);
 	}
 	
+	/**
+	 * Get the primary content format 
+	 **/
 	public String getPrimaryFormat(){
 		return getAttrValue(FileEnum.PrimaryFormat.attribute, String.class);
 	}
 	
+	/**
+	 * Check if the file node is locked 
+	 **/
 	public boolean isLocked(){
 		return getAttrValue(FileEnum.Lock.attribute, Boolean.class);
 	}
 	
+	/**
+	 * Get the lock by information
+	 * @return String the account that lock the file node. 
+	 **/
 	public String getLockby(){
 		return getAttrValue(FileEnum.Lockby.attribute, String.class);
 	}

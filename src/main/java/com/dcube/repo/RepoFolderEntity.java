@@ -21,13 +21,14 @@ public class RepoFolderEntity extends GenericEntity{
 	@Override
 	public EntryKey newEntryKey(Principal principal, Object... parameter) throws MetaException {
 		
-		return newEntryKey(principal);
+		String key = String.valueOf(System.currentTimeMillis());		
+		return new EntryKey(getEntityMeta().getEntityName(),key);
+		
 	}
 
 	@Override
 	public EntryKey newEntryKey(Principal principal) throws MetaException {
 		
-		String key = String.valueOf(System.currentTimeMillis());		
-		return new EntryKey(getEntityMeta().getEntityName(),key);
+		return newEntryKey(principal,new Object());
 	}
 }

@@ -17,7 +17,7 @@ public class RepoViewEntity extends GenericEntity{
 	@Override
 	public String getSchema(Principal principal, EntryKey key) {
 		
-		return RepoConstants.SCHEMA_CONTENT;
+		return RepoConstants.SCHEMA_REPOVIEW_HIER;
 	}
 
 	@Override
