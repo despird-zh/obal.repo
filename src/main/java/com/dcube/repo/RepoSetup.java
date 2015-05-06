@@ -8,6 +8,9 @@ import com.dcube.meta.EntityAttr.AttrType;
 import com.dcube.repo.RepoConstants.ContentEnum;
 import com.dcube.repo.RepoConstants.FileEnum;
 import com.dcube.repo.RepoConstants.FolderEnum;
+import com.dcube.repo.entity.RepoContentEntity;
+import com.dcube.repo.entity.RepoFileEntity;
+import com.dcube.repo.entity.RepoViewEntity;
 
 /**
  * Following Entities to be created:

@@ -1,23 +1,22 @@
-package com.dcube.repo;
+package com.dcube.repo.entity;
 
 import com.dcube.core.EntryKey;
 import com.dcube.core.security.Principal;
 import com.dcube.exception.MetaException;
 import com.dcube.meta.EntityMeta;
 import com.dcube.meta.GenericEntity;
+import com.dcube.repo.RepoConstants;
 
-public class RepoTagEntity extends GenericEntity{
-
+public class RepoContentEntity extends GenericEntity{
 	
-	
-	public RepoTagEntity(EntityMeta meta) {
+	public RepoContentEntity(EntityMeta meta) {
 		super(meta);
 	}
 
 	@Override
 	public String getSchema(Principal principal, EntryKey key) {
 		
-		return RepoConstants.SCHEMA_TAG;
+		return RepoConstants.SCHEMA_CONTENT;
 	}
 
 	@Override
