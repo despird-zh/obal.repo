@@ -16,7 +16,7 @@ import com.dcube.core.security.EntryAcl;
 import com.dcube.repo.RepoConstants.FileEnum;
 
 /**
- * FileNode delegate the presentation of file entry in repository
+ * FileNode delegate the file entry in repository
  * 
  * @author desprid
  * @version 0.1 2014-3-2

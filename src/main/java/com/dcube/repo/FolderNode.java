@@ -14,6 +14,12 @@ import com.dcube.core.security.AclConstants.AcePrivilege;
 import com.dcube.core.security.AclConstants.AceType;
 import com.dcube.repo.RepoConstants.FolderEnum;
 
+/**
+ * FolderNode delegate the folder entry in repository
+ * 
+ * @author desprid
+ * @version 0.1 2014-3-2
+ **/
 public class FolderNode extends EntryParser  implements RepoNode{
 
 	/**
