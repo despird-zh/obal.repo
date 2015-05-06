@@ -1,6 +1,7 @@
 package com.dcube.repo;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -117,14 +118,19 @@ public class FileNode extends EntryParser implements RepoNode{
 
 	@Override
 	public Map<String, Object> getAttributes(String... attributes) {
-		
-		return null;
+		Map<String, Object> result = new HashMap<String, Object>();
+		EntityEntry temp = (EntityEntry)rawEntry;
+		for(String attribute:attributes){
+			Object val = temp.getAttrValue(attribute);
+			result.put(attribute, val);
+		}
+		return result;
 	}
 
 	@Override
 	public <K> K getAttribute(String attribute,Class<K> type) {
-		EntityEntry temp = (EntityEntry)rawEntry;
-		return temp.getAttrValue(attribute, type);
+		
+		return getAttrValue(attribute, type);
 	}
 	
 	/**

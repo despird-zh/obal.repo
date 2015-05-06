@@ -1,11 +1,8 @@
 package com.dcube.repo;
 
 import com.dcube.admin.EntityAdmin;
-import com.dcube.core.security.AclConstants;
 import com.dcube.meta.EntityAttr;
-import com.dcube.meta.EntityConstants;
 import com.dcube.meta.EntityMeta;
-import com.dcube.meta.GenericEntity;
 import com.dcube.meta.EntityAttr.AttrMode;
 import com.dcube.meta.EntityAttr.AttrType;
 import com.dcube.repo.RepoConstants.ContentEnum;

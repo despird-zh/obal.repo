@@ -1,9 +1,11 @@
 package com.dcube.repo;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.dcube.core.accessor.AccessControlEntry;
+import com.dcube.core.accessor.EntityEntry;
 import com.dcube.core.accessor.EntryParser;
 import com.dcube.core.security.EntryAce;
 import com.dcube.core.security.EntryAcl;
@@ -144,14 +146,19 @@ public class FolderNode extends EntryParser  implements RepoNode{
 
 	@Override
 	public Map<String, Object> getAttributes(String... attributes) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Object> result = new HashMap<String, Object>();
+		EntityEntry temp = (EntityEntry)rawEntry;
+		for(String attribute:attributes){
+			Object val = temp.getAttrValue(attribute);
+			result.put(attribute, val);
+		}
+		return result;
 	}
 
 	@Override
 	public <K> K getAttribute(String attribute, Class<K> clazz) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return getAttrValue(attribute, clazz);
 	}
 
 
