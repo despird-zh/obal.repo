@@ -1,9 +1,10 @@
 package com.dcube.repo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
 import com.dcube.core.accessor.AccessControlEntry;
 import com.dcube.core.accessor.EntityEntry;
 import com.dcube.core.accessor.EntryParser;
@@ -11,7 +12,6 @@ import com.dcube.core.security.EntryAce;
 import com.dcube.core.security.EntryAcl;
 import com.dcube.core.security.AclConstants.AcePrivilege;
 import com.dcube.core.security.AclConstants.AceType;
-import com.dcube.repo.RepoConstants.FileEnum;
 import com.dcube.repo.RepoConstants.FolderEnum;
 
 public class FolderNode extends EntryParser  implements RepoNode{
@@ -38,7 +38,7 @@ public class FolderNode extends EntryParser  implements RepoNode{
 	 **/
 	public FolderNode(String fileEntity,String name, String key) {
 		super(new AccessControlEntry(fileEntity, key));
-		setAttrValue(FileEnum.NodeName.attribute, name);
+		setAttrValue(FolderEnum.NodeName.attribute, name);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class FolderNode extends EntryParser  implements RepoNode{
 	public FolderNode(String fileEntity,String name){
 		
 		super(new AccessControlEntry(fileEntity, null));
-		setAttrValue(FileEnum.NodeName.attribute, name);
+		setAttrValue(FolderEnum.NodeName.attribute, name);
 	}
 	
 	@Override
@@ -117,7 +117,7 @@ public class FolderNode extends EntryParser  implements RepoNode{
 		EntryAce ace = acl.getEntryAce(AceType.Owner, null);		
 		ace.setName(owner);
 		
-		setAttrValue(FileEnum.Owner.attribute, owner);
+		setAttrValue(FolderEnum.Owner.attribute, owner);
 	}
 
 	@Override
@@ -161,5 +161,45 @@ public class FolderNode extends EntryParser  implements RepoNode{
 		return getAttrValue(attribute, clazz);
 	}
 
-
+	/**
+	 * Get the entity name of repository node, this entity includes some extra attributes
+	 * i.e. the user defined attributes. 
+	 **/
+	public String getEntity(){
+		return getAttrValue(FolderEnum.Entity.attribute, String.class);
+	}
+	
+	/**
+	 * Get the description of folder node 
+	 **/
+	public String getDescription(){
+		return  getAttrValue(FolderEnum.Description.attribute, String.class);
+	}
+	
+	/**
+	 * Get the parent node key, i.e. the key of parent folder 
+	 **/
+	public String getParentNode(){
+		return getAttrValue(FolderEnum.Parent.attribute, String.class);
+	}
+	
+	/**
+	 * Get the child file id list under this node 
+	 **/
+	public List<String> getChildFiles(){
+		
+		@SuppressWarnings("unchecked")
+		Map<String, String> filesmap = getAttrValue(FolderEnum.ChildFiles.attribute, Map.class);
+		return new ArrayList<String>(filesmap.values());
+	}
+	
+	/**
+	 * Get the child folder id list under this node 
+	 **/
+	public List<String> getChildFolders(){
+		
+		@SuppressWarnings("unchecked")
+		Map<String, String> filesmap = getAttrValue(FolderEnum.ChildFolders.attribute, Map.class);
+		return new ArrayList<String>(filesmap.values());
+	}
 }

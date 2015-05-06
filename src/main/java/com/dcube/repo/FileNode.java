@@ -247,4 +247,10 @@ public class FileNode extends EntryParser implements RepoNode{
 		}
 	}	
 
+	/**
+	 * Get the description of file node 
+	 **/
+	public String getDescription(){
+		return  getAttrValue(FileEnum.Description.attribute, String.class);
+	}
 }
