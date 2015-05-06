@@ -1,109 +1,145 @@
 package com.dcube.repo;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
-import com.dcube.core.EntryKey;
 import com.dcube.core.accessor.AccessControlEntry;
-import com.dcube.core.security.AclConstants.AcePrivilege;
-import com.dcube.core.security.AclConstants.AceType;
+import com.dcube.core.accessor.EntryParser;
 import com.dcube.core.security.EntryAce;
 import com.dcube.core.security.EntryAcl;
+import com.dcube.core.security.AclConstants.AcePrivilege;
+import com.dcube.core.security.AclConstants.AceType;
+import com.dcube.repo.RepoConstants.FileEnum;
+import com.dcube.repo.RepoConstants.FolderEnum;
 
-public class FolderNode implements RepoNode{
+public class FolderNode extends EntryParser  implements RepoNode{
 
-	AccessControlEntry entry = null;
-	String repoName = null;
-	EntryKey key = null;
+	/**
+	 * Constructor with AccessControlEntry
+	 **/
+	public FolderNode(AccessControlEntry rawEntry){
+
+		super(rawEntry);
+	}
 	
-	public FolderNode(String repoName, AccessControlEntry entry) {
-		this.repoName = repoName;
-		this.entry = entry;
-		this.key = entry.getEntryKey();
+	/**
+	 * Constructor with entity name 
+	 **/
+	public FolderNode(String fileEntity){
+
+		super(new AccessControlEntry(fileEntity,null));
+	}
+	/**
+	 * the constructor 
+	 * @param group the group name
+	 * @param key the key  
+	 **/
+	public FolderNode(String fileEntity,String name, String key) {
+		super(new AccessControlEntry(fileEntity, key));
+		setAttrValue(FileEnum.NodeName.attribute, name);
 	}
 
+	/**
+	 * the constructor 
+	 * @param group the group name
+	 **/
+	public FolderNode(String fileEntity,String name){
+		
+		super(new AccessControlEntry(fileEntity, null));
+		setAttrValue(FileEnum.NodeName.attribute, name);
+	}
+	
 	@Override
 	public String getNodeId() {
 		
-		return key.getKey();
+		return getEntryKey().getKey();
 	}
 
 	@Override
 	public String getNodeName() {
-
-		return entry.getAttrValue(RepoConstants.FolderEnum.NodeName.attribute, String.class);
+		
+		return getAttrValue(FolderEnum.NodeName.attribute, String.class);
 	}
 
 	@Override
 	public boolean isDirectory() {
 		
-		return entry.getAttrValue(RepoConstants.FolderEnum.IsDirectory.attribute, Boolean.class);
-	}
-
-	@Override
-	public EntryAcl getEntryAcl() {
-		
-		return entry.getEntryAcl();
+		return getAttrValue(FolderEnum.IsDirectory.attribute, Boolean.class);
 	}
 
 	@Override
 	public void grant(AceType type, String name, String... permission) {
 		
-		EntryAcl acl = entry.getEntryAcl();
-		EntryAce ace = new EntryAce(type, name, permission);
-		acl.addEntryAce(ace, true);
+		EntryAcl acl = super.getEntryAcl();		
+		EntryAce ace = acl.getEntryAce(type, name);
+		if(ace != null){
+			ace.grant(permission);
+		}else{
+			ace = new EntryAce(type, name, permission);
+			acl.addEntryAce(ace, true);
+		}
 	}
 
 	@Override
 	public void revoke(AceType type, String name, String permission) {
-		EntryAcl acl = entry.getEntryAcl();
+		
+		EntryAcl acl = super.getEntryAcl();	
 		EntryAce ace = acl.getEntryAce(type, name);
-		ace.revoke(permission);
+		if(ace != null)
+			ace.revoke(permission);
 	}
 
 	@Override
 	public void grant(AceType type, String name, AcePrivilege privilege) {
 		
-		EntryAcl acl = entry.getEntryAcl();
+		EntryAcl acl = super.getEntryAcl();	
 		EntryAce ace = acl.getEntryAce(type, name);
-		ace.setPrivilege(privilege);
-	}
-	
+		
+		if(ace != null){
+			ace.setPrivilege(privilege);
+		}else{
+			ace = new EntryAce(type, name, privilege);
+			acl.addEntryAce(ace, true);
+		}
+	}	
+
 	@Override
 	public String getOwner() {
 		
-		return null;
+		return getAttrValue(FolderEnum.Owner.attribute, String.class);
 	}
 
 	@Override
 	public void setOwner(String owner) {
-		// TODO Auto-generated method stub
+		EntryAcl acl = getAccessControlEntry().getEntryAcl();
+		EntryAce ace = acl.getEntryAce(AceType.Owner, null);		
+		ace.setName(owner);
 		
+		setAttrValue(FileEnum.Owner.attribute, owner);
 	}
 
 	@Override
 	public String getModifier() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return getAccessControlEntry().getModifier();
 	}
 
 	@Override
 	public void setModifier(String modifier) {
-		// TODO Auto-generated method stub
 		
+		getAccessControlEntry().setModifier(modifier);
 	}
 
 	@Override
 	public Date getCreateDate() {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return getAccessControlEntry().getNewCreate();
 	}
 
 	@Override
 	public Date getLastModify() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return getAccessControlEntry().getLastModify();
 	}
 
 	@Override
@@ -113,18 +149,8 @@ public class FolderNode implements RepoNode{
 	}
 
 	@Override
-	public <K> K getAttribute(String attribute, Class<K> type) {
+	public <K> K getAttribute(String attribute, Class<K> clazz) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public List<FolderNode> getFolderNodes(){
-		
-		return null;
-	}
-	
-	public List<FileNode> getFileNodes(){
-		
 		return null;
 	}
 

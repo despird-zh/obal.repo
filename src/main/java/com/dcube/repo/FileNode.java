@@ -2,7 +2,6 @@ package com.dcube.repo;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,10 +22,22 @@ import com.dcube.repo.RepoConstants.FileEnum;
  **/
 public class FileNode extends EntryParser implements RepoNode{
 
+	/**
+	 * Constructor with AccessControlEntry
+	 **/
+	public FileNode(AccessControlEntry rawEntry){
+
+		super(rawEntry);
+	}
+	
+	/**
+	 * Constructor with entity name 
+	 **/
 	public FileNode(String fileEntity){
 
 		super(new AccessControlEntry(fileEntity,null));
 	}
+	
 	/**
 	 * the constructor 
 	 * @param group the group name
@@ -199,7 +210,12 @@ public class FileNode extends EntryParser implements RepoNode{
 		
 		EntryAcl acl = super.getEntryAcl();		
 		EntryAce ace = acl.getEntryAce(type, name);
-		ace.grant(permission);
+		if(ace != null){
+			ace.grant(permission);
+		}else{
+			ace = new EntryAce(type, name, permission);
+			acl.addEntryAce(ace, true);
+		}
 	}
 
 	@Override
@@ -207,7 +223,8 @@ public class FileNode extends EntryParser implements RepoNode{
 		
 		EntryAcl acl = super.getEntryAcl();	
 		EntryAce ace = acl.getEntryAce(type, name);
-		ace.revoke(permission);
+		if(ace != null)
+			ace.revoke(permission);
 	}
 
 	@Override
@@ -215,18 +232,13 @@ public class FileNode extends EntryParser implements RepoNode{
 		
 		EntryAcl acl = super.getEntryAcl();	
 		EntryAce ace = acl.getEntryAce(type, name);
-		ace.setPrivilege(privilege);
+		
+		if(ace != null){
+			ace.setPrivilege(privilege);
+		}else{
+			ace = new EntryAce(type, name, privilege);
+			acl.addEntryAce(ace, true);
+		}
 	}	
-	
-	/** get the attribute value */
-	private <K> K getAttrValue(String attribute, Class<K> type){
-		EntityEntry temp = (EntityEntry)rawEntry;
-		return temp.getAttrValue(attribute, type);
-	}
-	
-	/** set the attribute value */
-	private void setAttrValue(String attribute, Object value){
-		EntityEntry temp = (EntityEntry)rawEntry;		
-		temp.changeAttrValue(attribute, value);
-	}
+
 }

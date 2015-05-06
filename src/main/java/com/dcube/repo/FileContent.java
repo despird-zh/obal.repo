@@ -78,17 +78,4 @@ public class FileContent extends EntryParser {
 		return getAttrValue(ContentEnum.StorePath.attribute, String.class);
 	}
 	
-	
-	/** get the attribute value */
-	@SuppressWarnings("unused")
-	private <K> K getAttrValue(String attribute, Class<K> type){
-		EntityEntry temp = (EntityEntry)rawEntry;
-		return temp.getAttrValue(attribute, type);
-	}
-	
-	/** set the attribute value */
-	private void setAttrValue(String attribute, Object value){
-		EntityEntry temp = (EntityEntry)rawEntry;		
-		temp.changeAttrValue(attribute, value);
-	}
 }
