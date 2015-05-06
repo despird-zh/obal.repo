@@ -209,15 +209,15 @@ public class RepoSetup {
 				FileEnum.PrimaryFormat.qualifier);
 		meta.addAttr(attr);
 		
-		attr = new EntityAttr(FileEnum.Lock.attribute, 
+		attr = new EntityAttr(FileEnum.Locked.attribute, 
 				AttrType.BOOLEAN,
-				FileEnum.Lock.colfamily, 
-				FileEnum.Lock.qualifier);
+				FileEnum.Locked.colfamily, 
+				FileEnum.Locked.qualifier);
 		meta.addAttr(attr);
 		
-		attr = new EntityAttr(FileEnum.Lockby.attribute, 
-				FileEnum.Lockby.colfamily, 
-				FileEnum.Lockby.qualifier);
+		attr = new EntityAttr(FileEnum.LockedBy.attribute, 
+				FileEnum.LockedBy.colfamily, 
+				FileEnum.LockedBy.qualifier);
 		meta.addAttr(attr);
 		
 		// append other user defined attribute
@@ -355,12 +355,13 @@ public class RepoSetup {
 		meta.addAttr(attr);
 
 		attr = new EntityAttr(ContentEnum.Lock.attribute,
-				AttrType.BOOLEAN, 
 				ContentEnum.Lock.colfamily, 
 				ContentEnum.Lock.qualifier);		
 		meta.addAttr(attr);
 		
 		attr = new EntityAttr(ContentEnum.LockFile.attribute,
+				AttrMode.SET,
+				AttrType.STRING,
 				ContentEnum.LockFile.colfamily, 
 				ContentEnum.LockFile.qualifier);		
 		meta.addAttr(attr);

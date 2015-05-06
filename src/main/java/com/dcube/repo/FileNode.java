@@ -200,7 +200,7 @@ public class FileNode extends EntryParser implements RepoNode{
 	 * Check if the file node is locked 
 	 **/
 	public boolean isLocked(){
-		return getAttrValue(FileEnum.Lock.attribute, Boolean.class);
+		return getAttrValue(FileEnum.Locked.attribute, Boolean.class);
 	}
 	
 	/**
@@ -208,7 +208,7 @@ public class FileNode extends EntryParser implements RepoNode{
 	 * @return String the account that lock the file node. 
 	 **/
 	public String getLockby(){
-		return getAttrValue(FileEnum.Lockby.attribute, String.class);
+		return getAttrValue(FileEnum.LockedBy.attribute, String.class);
 	}
 	
 	@Override

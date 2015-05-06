@@ -2,22 +2,23 @@ package com.dcube.repo;
 
 import java.util.Set;
 
-import com.dcube.core.accessor.EntityEntry;
 import com.dcube.core.accessor.TraceableEntry;
 import com.dcube.core.accessor.EntryParser;
 import com.dcube.repo.RepoConstants.ContentEnum;
+import com.dcube.repo.RepoConstants.ContentLock;
 
 /**
-		FileIds(   "i_files",    "files"),
-		MD5(  "i_md5",   "md5"),
-		StorePath("i_storepath",  "storepath"),
-		Size("i_size",  "size"),
-		Lock("i_lock","lock"), // WRITE/READ
-		LockFile("i_lock_file","lockfile") ,
-		Format(  "i_format",   "format");
+ *
  **/
 public class FileContent extends EntryParser {
 
+	/**
+	 * Constructor with the TraceableEntry
+	 **/
+	public FileContent(TraceableEntry rawEntry){
+		super(rawEntry);
+	}
+	
 	/**
 	 * Default constructor 
 	 **/
@@ -78,4 +79,44 @@ public class FileContent extends EntryParser {
 		return getAttrValue(ContentEnum.StorePath.attribute, String.class);
 	}
 	
+	/**
+	 * Get the md5 verification information 
+	 **/
+	public String getMD5(){
+		
+		return getAttrValue(ContentEnum.MD5.attribute, String.class);
+	}
+	
+	/**
+	 * Get the size of file content
+	 **/
+	public int getSize(){
+		
+		return getAttrValue(ContentEnum.Size.attribute, Integer.class);
+	}
+	
+	/**
+	 * Get the format of file content
+	 **/
+	public String getFormat(){
+		
+		return getAttrValue(ContentEnum.Format.attribute, String.class);
+	}
+	
+	/**
+	 * Get the lock of content 
+	 **/
+	public ContentLock getLock(){
+		
+		String lock = getAttrValue(ContentEnum.Lock.attribute, String.class);
+		return ContentLock.valueOf(lock);
+	}
+	
+	/**
+	 * Get the lock file id 
+	 **/
+	public String getLockFile(){
+		
+		return getAttrValue(ContentEnum.LockFile.attribute, String.class);
+	}
 }

@@ -38,6 +38,14 @@ public class RepoConstants {
 	/** Unclassified tag category */
 	public static final String TAG_UNCLASSIFIED = "default";
 	
+	/** File content lock mode:READ,WRITE */
+	public static enum ContentLock{
+		
+		NONE,
+		READ,
+		WRITE;
+	}
+	
 	/**
 	 * The meta info enumerator 
 	 **/
@@ -54,8 +62,8 @@ public class RepoConstants {
 		RendContents( "i_rend_contents", "rendcontents"),// map(rendition name,content id)
 		PrimaryContent( "i_primary_content", "primarycontent"), // primary content id
 		PrimaryFormat( "i_primary_format", "primaryformat"), // primary content format
-		Lock("i_lock",  "lock"), // lock or not
-		Lockby("i_lockby",  "lockby"); // lockby
+		Locked("i_locked",  "locked"), // locked or not
+		LockedBy("i_lockedby",  "lockedby"); // locked by
 		
 		public final String attribute;
 		public final String qualifier;
@@ -111,6 +119,7 @@ public class RepoConstants {
 	    }
 	}
 	
+	/** The content enum */
 	public static enum ContentEnum{
 
 		Name(   "i_name",    "name"),
@@ -142,6 +151,7 @@ public class RepoConstants {
 	    }
 	}
 	
+	/** The repository view enum */
 	public static enum RepoViewEnum{
 		
 		Name(  "i_name",   "name"),
