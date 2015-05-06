@@ -7,11 +7,17 @@ import com.dcube.core.security.AclConstants.AcePrivilege;
 import com.dcube.core.security.AclConstants.AceType;
 import com.dcube.core.security.EntryAcl;
 
+/**
+ * RepoNode defines the normal operation with repository entry, i.e. file or folder.
+ * 
+ * @author despird
+ * @version 0.1 2014-3-1
+ **/
 public interface RepoNode {
 
 	public String getNodeId();
 	
-	public String getName();
+	public String getNodeName();
 	
 	public boolean isDirectory();
 	

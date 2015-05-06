@@ -14,6 +14,12 @@ import com.dcube.core.security.EntryAce;
 import com.dcube.core.security.EntryAcl;
 import com.dcube.repo.RepoConstants.FileEnum;
 
+/**
+ * FileNode delegate the presentation of file entry in repository
+ * 
+ * @author desprid
+ * @version 0.1 2014-3-2
+ **/
 public class FileNode extends EntryParser implements RepoNode{
 
 	public FileNode(String fileEntity){
@@ -42,26 +48,20 @@ public class FileNode extends EntryParser implements RepoNode{
 	
 	@Override
 	public String getNodeId() {
-		// TODO Auto-generated method stub
+		
 		return getEntryKey().getKey();
 	}
 
 	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
+	public String getNodeName() {
+		
 		return getAttrValue(FileEnum.NodeName.attribute, String.class);
 	}
 
 	@Override
 	public boolean isDirectory() {
-		// TODO Auto-generated method stub
+		
 		return getAttrValue(FileEnum.IsDirectory.attribute, Boolean.class);
-	}
-
-	@Override
-	public EntryAcl getEntryAcl() {
-		// TODO Auto-generated method stub
-		return ((AccessControlEntry)rawEntry).getEntryAcl();
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class FileNode extends EntryParser implements RepoNode{
 
 	@Override
 	public void setOwner(String owner) {
-		EntryAcl acl = ((AccessControlEntry)rawEntry).getEntryAcl();
+		EntryAcl acl = getAccessControlEntry().getEntryAcl();
 		EntryAce ace = acl.getEntryAce(AceType.Owner, null);		
 		ace.setName(owner);
 		
@@ -81,31 +81,31 @@ public class FileNode extends EntryParser implements RepoNode{
 
 	@Override
 	public String getModifier() {
-		// TODO Auto-generated method stub
-		return ((AccessControlEntry)rawEntry).getModifier();
+		
+		return getAccessControlEntry().getModifier();
 	}
 
 	@Override
 	public void setModifier(String modifier) {
-		// TODO Auto-generated method stub
-		((AccessControlEntry)rawEntry).setModifier(modifier);
+		
+		getAccessControlEntry().setModifier(modifier);
 	}
 
 	@Override
 	public Date getCreateDate() {
-		// TODO Auto-generated method stub
-		return ((AccessControlEntry)rawEntry).getNewCreate();
+		
+		return getAccessControlEntry().getNewCreate();
 	}
 
 	@Override
 	public Date getLastModify() {
-		// TODO Auto-generated method stub
-		return ((AccessControlEntry)rawEntry).getLastModify();
+		
+		return getAccessControlEntry().getLastModify();
 	}
 
 	@Override
 	public Map<String, Object> getAttributes(String... attributes) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -115,51 +115,71 @@ public class FileNode extends EntryParser implements RepoNode{
 		return temp.getAttrValue(attribute, type);
 	}
 	
-	public boolean isGroup(){
-		
-		return getAttrValue(FileEnum.IsGroup.attribute, Boolean.class);
-	}
-	
-	public List<FileNode> getFileNodes(){
-		
-		throw new UnsupportedOperationException("");
-	}
-	
 	public Set<String> getFileTags(){
 		
 		Map<String,String> tagmap = getAttrValue(FileEnum.Tags.attribute, Map.class);
 		return tagmap.keySet();
 	}
 	
-	public FileContent getPrimaryContent(){
+	public String getPrimaryContent(){
 		
-		return null;
+		return getAttrValue(FileEnum.PrimaryContent.attribute, String.class);
 	}
 	
-	public List<FileContent> getRendContents(){
+	public Map<String, String> getRendContents(){
 		
-		return null;
+		return getAttrValue(FileEnum.RendContents.attribute, Map.class);
 	}
 
+	public Set<String> getKeywords(){
+		
+		return getAttrValue(FileEnum.Keywards.attribute, Set.class);
+	}
+	
+	public String getParentNode(){
+		return getAttrValue(FileEnum.Parent.attribute, String.class);
+	}
+	
+	public String getEntity(){
+		return getAttrValue(FileEnum.Entity.attribute, String.class);
+	}
+	
+	public String getPrimaryFormat(){
+		return getAttrValue(FileEnum.PrimaryFormat.attribute, String.class);
+	}
+	
+	public boolean isLocked(){
+		return getAttrValue(FileEnum.Lock.attribute, Boolean.class);
+	}
+	
+	public String getLockby(){
+		return getAttrValue(FileEnum.Lockby.attribute, String.class);
+	}
+	
 	@Override
 	public void grant(AceType type, String name, String... permission) {
-		// TODO Auto-generated method stub
 		
+		EntryAcl acl = super.getEntryAcl();		
+		EntryAce ace = acl.getEntryAce(type, name);
+		ace.grant(permission);
 	}
 
 	@Override
 	public void revoke(AceType type, String name, String permission) {
-		// TODO Auto-generated method stub
 		
+		EntryAcl acl = super.getEntryAcl();	
+		EntryAce ace = acl.getEntryAce(type, name);
+		ace.revoke(permission);
 	}
 
 	@Override
 	public void grant(AceType type, String name, AcePrivilege privilege) {
-		// TODO Auto-generated method stub
 		
+		EntryAcl acl = super.getEntryAcl();	
+		EntryAce ace = acl.getEntryAce(type, name);
+		ace.setPrivilege(privilege);
 	}	
 	
-
 	/** get the attribute value */
 	private <K> K getAttrValue(String attribute, Class<K> type){
 		EntityEntry temp = (EntityEntry)rawEntry;

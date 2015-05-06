@@ -42,8 +42,6 @@ public class RepoConstants {
 
 		NodeName(   "i_name", "name"),
 		IsDirectory(  "i_isdirectory",   "isdirectory"),
-		IsGroup(  "i_isgroup",   "isgroup"),
-		GroupFiles(  "i_group_files",   "groupfiles"),
 		Keywards(  "i_keywards",   "keywards"), // Set data
 		Description(  "i_description",   "description"),
 		Owner("i_owner", AclConstants.CF_ACL , "owner"),

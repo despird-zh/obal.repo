@@ -132,13 +132,7 @@ public class RepoSetup {
 				FileEnum.IsDirectory.colfamily, 
 				FileEnum.IsDirectory.qualifier);
 		meta.addAttr(attr);
-		
-		attr = new EntityAttr(FileEnum.IsGroup.attribute, 
-				AttrType.BOOLEAN,
-				FileEnum.IsGroup.colfamily, 
-				FileEnum.IsGroup.qualifier);
-		meta.addAttr(attr);
-		
+				
 		attr = new EntityAttr(FileEnum.Keywards.attribute, 
 				AttrMode.SET,
 				AttrType.STRING,
@@ -216,6 +210,7 @@ public class RepoSetup {
 		meta.addAttr(attr);
 		
 		attr = new EntityAttr(FileEnum.Lock.attribute, 
+				AttrType.BOOLEAN,
 				FileEnum.Lock.colfamily, 
 				FileEnum.Lock.qualifier);
 		meta.addAttr(attr);

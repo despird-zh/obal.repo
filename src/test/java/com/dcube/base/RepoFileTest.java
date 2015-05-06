@@ -103,7 +103,7 @@ public class RepoFileTest extends BaseTester{
     		for(AccessControlEntry acentry:coll){
     			
     			FileNode fn = converter.toTarget(acentry);
-    			System.out.println("file name:" + fn.getName());
+    			System.out.println("file name:" + fn.getNodeName());
     		}
     		
     	} catch (BaseException e) {
