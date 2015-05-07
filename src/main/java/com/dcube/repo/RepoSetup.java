@@ -8,8 +8,8 @@ import com.dcube.meta.EntityAttr.AttrType;
 import com.dcube.repo.RepoConstants.ContentEnum;
 import com.dcube.repo.RepoConstants.FileEnum;
 import com.dcube.repo.RepoConstants.FolderEnum;
-import com.dcube.repo.entity.RepoContentEntity;
-import com.dcube.repo.entity.RepoFileEntity;
+import com.dcube.repo.entity.FileContentEntity;
+import com.dcube.repo.entity.FileNodeEntity;
 import com.dcube.repo.entity.RepoViewEntity;
 
 /**
@@ -115,7 +115,7 @@ public class RepoSetup {
 	public EntityMeta buildFileNodeSchema(String entityName, String description, EntityAttr ...attrs ) {
 
 		EntityMeta meta = new EntityMeta(entityName);
-		meta.setEntityClass(RepoFileEntity.class.getName());
+		meta.setEntityClass(FileNodeEntity.class.getName());
 		meta.setSchema(RepoConstants.SCHEMA_FILE);
 		meta.setAccessorName(RepoConstants.ACCESSOR_ENTITY_FILE);
 		meta.setDescription(description);
@@ -240,7 +240,7 @@ public class RepoSetup {
 	public EntityMeta buildFolderNodeSchema(String entityName, String description, EntityAttr ...attrs ) {
 
 		EntityMeta meta = new EntityMeta(entityName);
-		meta.setEntityClass(RepoFileEntity.class.getName());
+		meta.setEntityClass(FileNodeEntity.class.getName());
 		meta.setSchema(RepoConstants.SCHEMA_FOLDER);
 		meta.setAccessorName(RepoConstants.ACCESSOR_ENTITY_FOLDER);
 		meta.setDescription(description);
@@ -325,7 +325,7 @@ public class RepoSetup {
 		EntityAdmin eadmin = EntityAdmin.getInstance();
 		
 		EntityMeta meta = new EntityMeta(RepoConstants.ENTITY_CONTENT);
-		meta.setEntityClass(RepoContentEntity.class.getName());
+		meta.setEntityClass(FileContentEntity.class.getName());
 		meta.setAccessorName(RepoConstants.ACCESSOR_ENTITY_CONTENT);
 		meta.setDescription("File System content schema");
 		meta.setTraceable(true);

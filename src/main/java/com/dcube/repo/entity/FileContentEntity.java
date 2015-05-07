@@ -7,16 +7,16 @@ import com.dcube.meta.EntityMeta;
 import com.dcube.meta.GenericEntity;
 import com.dcube.repo.RepoConstants;
 
-public class RepoFileEntity extends GenericEntity{
+public class FileContentEntity extends GenericEntity{
 	
-	public RepoFileEntity(EntityMeta meta) {
+	public FileContentEntity(EntityMeta meta) {
 		super(meta);
 	}
 
 	@Override
 	public String getSchema(Principal principal, EntryKey key) {
 		
-		return RepoConstants.SCHEMA_FILE;
+		return RepoConstants.SCHEMA_CONTENT;
 	}
 
 	@Override

@@ -143,12 +143,7 @@ public class RepoConstants {
 			this.qualifier = qualifier;
 			this.colfamily = EntityConstants.ATTR_DFT_COLUMN;
 	    }
-		
-		private ContentEnum(String attribute, String colfamily, String qualifier){  
-			this.attribute = attribute;
-			this.qualifier = qualifier;
-			this.colfamily = colfamily;
-	    }
+
 	}
 	
 	/** The repository view enum */
@@ -156,7 +151,8 @@ public class RepoConstants {
 		
 		Name(  "i_name",   "name"),
 		Description(  "i_description",   "description"),
-		Presents(  "i_presents",   "presents"),//??????????
+		IsPrimary(  "i_isprimary",   "isprimary"),
+		Presents(  "i_presents",   "presents"),//
 		Profile(  "i_profile",   "profile");
 		
 		public final String attribute;
@@ -171,12 +167,31 @@ public class RepoConstants {
 			this.qualifier = qualifier;
 			this.colfamily = EntityConstants.ATTR_DFT_COLUMN;
 	    }
+	}
+
+	/** The File Tag enum */
+	public static enum TagEnum{
 		
-		private RepoViewEnum(String attribute, String colfamily, String qualifier){  
+		Name(  "i_name",   "name"),
+		Category(  "i_category",   "category");
+		
+		public final String attribute;
+		public final String qualifier;
+		public final String colfamily;
+		
+		/**
+		 * Hide default constructor 
+		 **/
+		private TagEnum(String attribute, String qualifier){  
+			this.attribute = attribute;
+			this.qualifier = qualifier;
+			this.colfamily = EntityConstants.ATTR_DFT_COLUMN;
+	    }
+		
+		private TagEnum(String attribute, String colfamily, String qualifier){  
 			this.attribute = attribute;
 			this.qualifier = qualifier;
 			this.colfamily = colfamily;
 	    }
 	}
-
 }

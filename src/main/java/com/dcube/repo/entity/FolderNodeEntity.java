@@ -7,28 +7,29 @@ import com.dcube.meta.EntityMeta;
 import com.dcube.meta.GenericEntity;
 import com.dcube.repo.RepoConstants;
 
-public class RepoContentEntity extends GenericEntity{
+public class FolderNodeEntity extends GenericEntity{
 	
-	public RepoContentEntity(EntityMeta meta) {
+	public FolderNodeEntity(EntityMeta meta) {
 		super(meta);
 	}
 
 	@Override
 	public String getSchema(Principal principal, EntryKey key) {
 		
-		return RepoConstants.SCHEMA_CONTENT;
+		return RepoConstants.SCHEMA_REPOVIEW;
 	}
 
 	@Override
 	public EntryKey newEntryKey(Principal principal, Object... parameter) throws MetaException {
 		
-		return newEntryKey(principal);
+		String key = String.valueOf(System.currentTimeMillis());		
+		return new EntryKey(getEntityMeta().getEntityName(),key);
+		
 	}
 
 	@Override
 	public EntryKey newEntryKey(Principal principal) throws MetaException {
 		
-		String key = String.valueOf(System.currentTimeMillis());		
-		return new EntryKey(getEntityMeta().getEntityName(),key);
+		return newEntryKey(principal,new Object());
 	}
 }
