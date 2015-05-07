@@ -2,26 +2,21 @@ package com.dcube.repo.hbase;
 
 import com.dcube.core.IEntryConverter;
 import com.dcube.core.accessor.AccessorContext;
-import com.dcube.core.accessor.EntityEntry;
 import com.dcube.core.accessor.TraceableEntry;
 import com.dcube.core.hbase.HEntityAccessor;
 import com.dcube.exception.BaseException;
 import com.dcube.repo.FileNode;
-import com.dcube.repo.FileRepository;
 import com.dcube.repo.FileTag;
 import com.dcube.repo.RepoConstants;
 
-/**
- * RepoViewEAccessor be used to access the hierarchy data of different repository view
- **/
-public class RepoViewEAccessor extends HEntityAccessor<TraceableEntry>{
+public class FileTagEAccessor extends HEntityAccessor<TraceableEntry>{
 
-	public RepoViewEAccessor() {
-		super(RepoConstants.ACCESSOR_ENTITY_REPOVIEW);
+	public FileTagEAccessor() {
+		super(RepoConstants.ACCESSOR_ENTITY_FILE);
 	}
 	
-	public RepoViewEAccessor(AccessorContext context) {
-		super(RepoConstants.ACCESSOR_ENTITY_REPOVIEW,context);
+	public FileTagEAccessor(AccessorContext context) {
+		super(RepoConstants.ACCESSOR_ENTITY_FILE,context);
 	}
 
 	@Override
@@ -34,20 +29,20 @@ public class RepoViewEAccessor extends HEntityAccessor<TraceableEntry>{
 	@Override 
 	public <To> IEntryConverter<TraceableEntry, To> getEntryConverter(Class<To> cto){
 		
-		if(cto.equals(FileRepository.class)){
+		if(cto.equals(FileNode.class)){
 			
-			IEntryConverter<TraceableEntry,FileRepository> converter = new IEntryConverter<TraceableEntry,FileRepository>(){
+			IEntryConverter<TraceableEntry,FileTag> converter = new IEntryConverter<TraceableEntry,FileTag>(){
 
 				@Override
-				public FileRepository toTarget(TraceableEntry fromObject)
+				public FileTag toTarget(TraceableEntry fromObject)
 						throws BaseException {
 
-					FileRepository fnode = new FileRepository(fromObject);
+					FileTag fnode = new FileTag(fromObject);
 					return fnode;
 				}
 
 				@Override
-				public TraceableEntry toSource(FileRepository toObject)
+				public TraceableEntry toSource(FileTag toObject)
 						throws BaseException {
 					
 					TraceableEntry entry = (TraceableEntry)toObject.getGenericEntry();
@@ -61,4 +56,5 @@ public class RepoViewEAccessor extends HEntityAccessor<TraceableEntry>{
 		
 		return super.getEntryConverter(cto);
 	}
+	
 }

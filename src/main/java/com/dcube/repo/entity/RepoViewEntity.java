@@ -8,8 +8,6 @@ import com.dcube.meta.GenericEntity;
 import com.dcube.repo.RepoConstants;
 
 public class RepoViewEntity extends GenericEntity{
-
-	
 	
 	public RepoViewEntity(EntityMeta meta) {
 		super(meta);
