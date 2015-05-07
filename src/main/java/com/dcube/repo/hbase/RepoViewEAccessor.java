@@ -2,13 +2,10 @@ package com.dcube.repo.hbase;
 
 import com.dcube.core.IEntryConverter;
 import com.dcube.core.accessor.AccessorContext;
-import com.dcube.core.accessor.EntityEntry;
 import com.dcube.core.accessor.TraceableEntry;
 import com.dcube.core.hbase.HEntityAccessor;
 import com.dcube.exception.BaseException;
-import com.dcube.repo.FileNode;
 import com.dcube.repo.FileRepository;
-import com.dcube.repo.FileTag;
 import com.dcube.repo.RepoConstants;
 
 /**
