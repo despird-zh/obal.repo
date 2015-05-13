@@ -43,7 +43,7 @@ public class RepoFileTest extends BaseTester{
     	debug("---==: Test 000 initial ");
 
 		CoreFacade.initial();
-		CoreFacade.start();
+		CoreFacade.startup();
 
     }
     
@@ -119,6 +119,6 @@ public class RepoFileTest extends BaseTester{
     		return;
     	
     	debug("---==: Test 999 schema drop");
-    	CoreFacade.stop();
+    	CoreFacade.shutdown();
     }
 }
